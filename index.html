@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC. — Coding Camp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Cookie&family=Cherry+Bomb+One&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+:root {
+  --warna-latar: #FAFAFA;
+  --warna-permukaan: #FFFFFF;
+  --warna-gelap: #0D0D0D;
+  --warna-gelap-lembut: #1A1A1A;
+  --warna-aksen: #FF5A1F;
+  --warna-aksen-lembut: #FFE7DB;
+  --warna-teks-sekunder: #7A7A7A;
+  --warna-garis: #EBEBEB;
+  --warna-sukses: #1F8A4C;
+  --warna-madya: #C98A00;
+  --warna-sulit: #C93A3A;
+  --font-tampil: 'Poppins', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-aksen: 'Cookie', cursive;
+  --font-logo: 'Cherry Bomb One', cursive;
+  --radius-kartu: 20px;
+  --radius-tombol: 15px;
+  --lebar-kontainer: 1200px;
+  --navbar-bg: rgba(255, 255, 255, 0.98);
+}
+
+html[data-tema="gelap"] {
+  --warna-latar: #0D0D0D;
+  --warna-permukaan: #1A1A1A;
+  --warna-gelap: #FAFAFA;
+  --warna-gelap-lembut: #EBEBEB;
+  --warna-aksen: #FF6B35;
+  --warna-aksen-lembut: #3A2318;
+  --warna-teks-sekunder: #9A9A9A;
+  --warna-garis: #2A2A2A;
+  --navbar-bg: rgba(13, 13, 13, 0.98);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-tampil);
+  background: var(--warna-latar);
+  color: var(--warna-gelap);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; border: none; cursor: pointer; background: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+:focus-visible {
+  outline: 2px solid var(--warna-aksen);
+  outline-offset: 3px;
+}
+
+.kontainer {
+  max-width: var(--lebar-kontainer);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.tombol-utama {
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--warna-gelap);
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 14px 28px;
+  border-radius: var(--radius-tombol);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.tombol-utama:hover {
+  background: var(--warna-aksen);
+  transform: translateY(-2px);
+}
+
+.tombol-garis {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid var(--warna-gelap);
+  color: var(--warna-gelap);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: var(--radius-tombol);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tombol-garis:hover {
+  background: var(--warna-gelap);
+  color: #FFFFFF;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--navbar-bg);
+  padding: 1.5px;
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.logo {
+  font-family: var(--font-logo);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--warna-aksen);
+}
+
+.menu-navigasi {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.menu-navigasi a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--warna-gelap);
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.menu-navigasi a.aktif {
+  color: var(--warna-aksen);
+}
+
+.menu-navigasi a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--warna-aksen);
+  transition: width 0.25s ease;
+}
+
+.menu-navigasi a:hover::after {
+  width: 100%;
+}
+
+.navbar-aksi-kanan {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.tombol-toggle-tema {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--warna-gelap);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tombol-toggle-tema:hover {
+  color: var(--warna-aksen);
+}
+
+.tombol-toggle-tema .lucide {
+  width: 19px;
+  height: 19px;
+}
+
+.ikon-tema-terang { display: block; }
+.ikon-tema-gelap { display: none; }
+
+html[data-tema="gelap"] .ikon-tema-terang { display: none; }
+html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
+
+.tombol-menu-mobile {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--warna-gelap);
+}
+
+.tombol-menu-mobile .lucide {
+  width: 24px;
+  height: 24px;
+  transition: opacity 0.2s ease;
+}
+
+.tombol-menu-mobile .ikon-tutup { display: none; }
+
+.tombol-menu-mobile.aktif .ikon-buka { display: none; }
+.tombol-menu-mobile.aktif .ikon-tutup { display: block; }
+
+.modal-menu-mobile {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: color-mix(in srgb, var(--warna-gelap) 50%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-menu-mobile.tampil {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-menu-panel {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  left: 16px;
+  background: var(--warna-permukaan);
+  border-radius: 18px;
+  padding: 24px;
+  transform: translateY(-16px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 20px 48px color-mix(in srgb, var(--warna-gelap) 18%, transparent);
+}
+
+.modal-menu-mobile.tampil .modal-menu-panel {
+  transform: translateY(0);
+}
+
+.modal-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--warna-garis);
+  margin-bottom: 8px;
+}
+
+.modal-menu-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--warna-teks-sekunder);
+}
+
+.modal-menu-tutup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--warna-teks-sekunder);
+}
+
+.modal-menu-tutup .lucide { width: 16px; height: 16px; }
+
+.modal-menu-daftar a {
+  display: block;
+  padding: 18px 4px;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--warna-gelap);
+  border-bottom: 1px solid var(--warna-garis);
+  transition: color 0.2s ease;
+}
+
+.modal-menu-daftar a:hover {
+  color: var(--warna-aksen);
+}
+
+.modal-menu-daftar a:last-child { border-bottom: none; }
+
+.modal-menu-footer {
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.modal-menu-email {
+  font-size: 13px;
+  color: var(--warna-teks-sekunder);
+  text-decoration: underline;
+}
+
+.modal-menu-sosial {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.modal-menu-sosial a {
+  font-size: 13px;
+  color: var(--warna-teks-sekunder);
+}
+
+.modal-menu-sosial a:hover { color: var(--warna-gelap); }
+
+
+.hero {
+  padding: 88px 0 100px;
+  position: relative;
+  overflow: hidden;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M24 19v10M19 24h10' stroke='%23888888' stroke-width='1.2' stroke-linecap='round' opacity='0.35'/%3E%3C/svg%3E");
+  background-size: 48px 48px;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--warna-aksen);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-judul {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+.hero-deskripsi {
+  font-size: 17px;
+  color: var(--warna-teks-sekunder);
+  max-width: 460px;
+  margin-bottom: 36px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.hero-ilustrasi {
+  position: relative;
+  padding: 20px 28px 28px 0;
+}
+
+.bingkai-ilustrasi-hero {
+  position: relative;
+  z-index: 2;
+}
+
+.bingkai-ilustrasi-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.aksen-hero-satu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--warna-aksen-lembut);
+  z-index: 1;
+}
+
+.aksen-hero-dua {
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  width: 90px;
+  height: 90px;
+  border: 3px solid var(--warna-gelap);
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.section-deskripsi {
+  padding: 90px 0;
+  border-top: 1px solid var(--warna-garis);
+}
+
+.deskripsi-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.deskripsi-ilustrasi {
+  position: relative;
+  padding: 30px;
+}
+
+.bingkai-ilustrasi-about img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.grafis-pojok {
+  position: absolute;
+  width: 68px;
+  height: 68px;
+}
+
+.grafis-kanan-atas {
+  top: -6px;
+  right: -6px;
+}
+
+.grafis-kiri-bawah {
+  bottom: -6px;
+  left: -6px;
+}
+
+.deskripsi-teks {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--warna-gelap);
+}
+
+.deskripsi-sumber {
+  font-family: var(--font-aksen);
+  font-size: 28px;
+  color: var(--warna-aksen);
+  margin-top: 24px;
+}
+
+.section-course {
+  padding: 90px 0 110px;
+  border-top: 1px solid var(--warna-garis);
+}
+
+.course-judul-wrap {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.course-judul {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.course-subjudul {
+  color: var(--warna-teks-sekunder);
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.course-layout {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.panel-filter {
+  background: var(--warna-permukaan);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-kartu);
+  padding: 24px;
+  position: sticky;
+  top: 100px;
+  order: 2;
+}
+
+.kolom-course { order: 1; }
+
+.kotak-cari {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.kotak-cari input {
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 13px 16px 13px 42px;
+  border: 1px solid var(--warna-garis);
+  border-radius: 12px;
+  background: var(--warna-latar);
+  color: var(--warna-gelap);
+}
+
+.kotak-cari input::placeholder { color: var(--warna-teks-sekunder); }
+
+.kotak-cari input:focus {
+  border-color: var(--warna-aksen);
+  outline: none;
+}
+
+.kotak-cari .lucide {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 17px;
+  height: 17px;
+  color: var(--warna-teks-sekunder);
+}
+
+.filter-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--warna-teks-sekunder);
+  text-transform: none;
+  margin-bottom: 14px;
+}
+
+.opsi-radio {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--warna-garis);
+}
+
+.opsi-radio:last-child { border-bottom: none; }
+
+.opsi-radio input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--warna-garis);
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.2s ease;
+}
+
+.opsi-radio input[type="radio"]:checked {
+  border-color: var(--warna-aksen);
+}
+
+.opsi-radio input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--warna-aksen);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.opsi-radio label {
+  font-size: 14px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.tombol-reset-filter {
+  width: 100%;
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--warna-teks-sekunder);
+  padding: 10px;
+  border: 1px dashed var(--warna-garis);
+  border-radius: 10px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.tombol-reset-filter:hover {
+  color: var(--warna-aksen);
+  border-color: var(--warna-aksen);
+}
+
+.grid-kartu-course {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.kartu-course {
+  background: var(--warna-permukaan);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-kartu);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kartu-course:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px color-mix(in srgb, var(--warna-gelap) 8%, transparent);
+}
+
+.kartu-preview {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  position: relative;
+}
+
+.kartu-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lencana-tingkat {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: var(--radius-tombol);
+  background: color-mix(in srgb, var(--warna-permukaan) 92%, transparent);
+  backdrop-filter: blur(4px);
+}
+
+.lencana-tingkat.dasar { color: var(--warna-sukses); }
+.lencana-tingkat.menengah { color: var(--warna-madya); }
+.lencana-tingkat.sulit { color: var(--warna-sulit); }
+
+.lencana-tingkat-inline {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: var(--radius-tombol);
+  border: 1px solid currentColor;
+}
+
+.lencana-tingkat-inline.dasar { color: var(--warna-sukses); }
+.lencana-tingkat-inline.menengah { color: var(--warna-madya); }
+.lencana-tingkat-inline.sulit { color: var(--warna-sulit); }
+
+.kartu-isi {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.kartu-header-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kartu-kategori {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--warna-aksen);
+}
+
+.kartu-durasi {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--warna-teks-sekunder);
+  flex-shrink: 0;
+}
+
+.kartu-durasi .lucide { width: 13px; height: 13px; }
+
+.kartu-judul {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.kartu-deskripsi {
+  font-size: 13.5px;
+  color: var(--warna-teks-sekunder);
+  line-height: 1.55;
+}
+
+.kartu-tingkat-baris {
+  display: flex;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.kartu-aksi {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.tombol-detail {
+  text-align: center;
+  padding: 11px 0;
+  border: 1.5px solid var(--warna-gelap);
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tombol-detail:hover {
+  background: var(--warna-gelap);
+  color: var(--warna-latar);
+}
+
+.tombol-belajar {
+  text-align: center;
+  padding: 11px 0;
+  background: var(--warna-aksen);
+  color: #FFFFFF;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.tombol-belajar:hover { opacity: 0.85; }
+
+.status-kosong {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--warna-teks-sekunder);
+}
+
+.status-kosong .lucide {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 12px;
+  color: var(--warna-garis);
+}
+
+.status-kosong p:first-of-type {
+  font-weight: 600;
+  color: var(--warna-gelap);
+  margin-bottom: 6px;
+}
+
+.status-kosong p { font-size: 14px; }
+
+.overlay-detail {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: color-mix(in srgb, var(--warna-gelap) 55%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.overlay-detail.tampil {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel-detail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--warna-permukaan);
+  border-radius: 24px 24px 0 0;
+  padding: 12px 24px 32px;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.overlay-detail.tampil .panel-detail {
+  transform: translateY(0);
+}
+
+.panel-detail-pegangan {
+  width: 40px;
+  height: 4px;
+  background: var(--warna-garis);
+  border-radius: 4px;
+  margin: 0 auto 20px;
+}
+
+.panel-detail-tutup {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--warna-teks-sekunder);
+  background: var(--warna-latar);
+}
+
+.panel-detail-tutup .lucide { width: 17px; height: 17px; }
+
+.panel-detail-gambar {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-kartu);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.panel-detail-gambar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.panel-detail-baris-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.panel-detail-kategori {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--warna-aksen);
+}
+
+.panel-detail-durasi {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--warna-teks-sekunder);
+}
+
+.panel-detail-durasi .lucide { width: 14px; height: 14px; }
+
+.panel-detail-judul {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 14px;
+}
+
+.panel-detail-deskripsi {
+  font-size: 15px;
+  color: var(--warna-teks-sekunder);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.panel-detail-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--warna-garis);
+}
+
+.panel-detail-footer .tombol-belajar {
+  padding: 13px 32px;
+  font-size: 14px;
+}
+
+.footer {
+  border-top: 1px solid var(--warna-garis);
+  padding: 64px 0 32px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.footer-logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--warna-aksen);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.footer-deskripsi {
+  font-size: 14px;
+  color: var(--warna-teks-sekunder);
+  max-width: 280px;
+  margin-bottom: 20px;
+}
+
+.footer-sosial {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-sosial a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--warna-gelap);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.footer-sosial a:hover { background: var(--warna-aksen); }
+.footer-sosial .lucide { width: 17px; height: 17px; }
+
+.footer-kolom-judul {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--warna-teks-sekunder);
+  margin-bottom: 18px;
+}
+
+.footer-kolom ul { display: flex; flex-direction: column; gap: 12px; }
+
+.footer-kolom a {
+  font-size: 14px;
+  color: var(--warna-gelap);
+  transition: color 0.2s ease;
+}
+
+.footer-kolom a:hover { color: var(--warna-aksen); }
+
+.footer-bawah {
+  border-top: 1px solid var(--warna-garis);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--warna-teks-sekunder);
+}
+
+@media (min-width: 768px) {
+  .panel-detail {
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    top: 50%;
+    transform: translate(-50%, -46%);
+    width: min(680px, 90vw);
+    max-height: 82vh;
+    border-radius: var(--radius-kartu);
+    padding: 28px 32px 32px;
+  }
+
+  .overlay-detail.tampil .panel-detail {
+    transform: translate(-50%, -50%);
+  }
+
+  .panel-detail-pegangan { display: none; }
+
+  .panel-detail-gambar { aspect-ratio: 16/7; }
+
+  .panel-detail-judul { font-size: 28px; }
+}
+
+@media (max-width: 960px) {
+  .hero-grid, .deskripsi-grid { grid-template-columns: 1fr; }
+  .hero-ilustrasi { order: -1; max-width: 460px; margin: 0 auto; }
+  .deskripsi-ilustrasi { max-width: 420px; margin: 0 auto; }
+  .course-layout { grid-template-columns: 1fr; }
+  .panel-filter { position: static; order: 1; }
+  .kolom-course { order: 2; }
+  .grid-kartu-course { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+@media (max-width: 628px) {
+  .kontainer { padding: 0 24px; }
+  .menu-navigasi { display: none; }
+  .tombol-menu-mobile { display: flex; flex-shrink: 0; }
+  #tombol-mulai-desktop { display: none; }
+  .hero { padding: 48px 0 64px; }
+  .hero-judul { font-size: 32px; }
+  .hero-deskripsi { font-size: 15px; max-width: 100%; }
+  .hero-cta { flex-wrap: wrap; }
+  .section-deskripsi { padding: 56px 0; }
+  .deskripsi-teks { font-size: 19px; }
+  .deskripsi-sumber { font-size: 24px; }
+  .section-course { padding: 56px 0 72px; }
+  .course-judul { font-size: 28px; }
+  .grid-kartu-course { grid-template-columns: 1fr; gap: 18px; }
+  .kartu-aksi { gap: 8px; }
+  .footer { padding: 48px 0 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; margin-bottom: 32px; }
+  .footer-bawah { flex-direction: column; gap: 10px; align-items: flex-start; }
+}
+
+@media (max-width: 448px) {
+  .kontainer { padding: 0 18px; }
+  .logo { font-size: 21px; }
+  .hero { padding: 36px 0 48px; }
+  .hero-label { font-size: 12px; }
+  .hero-judul { font-size: 27px; }
+  .hero-ilustrasi { padding: 16px 20px 20px 0; }
+  .aksen-hero-satu { width: 80px; height: 80px; }
+  .aksen-hero-dua { width: 60px; height: 60px; }
+  .tombol-utama, .tombol-garis { font-size: 13px; padding: 12px 20px; }
+  .deskripsi-ilustrasi { padding: 22px; }
+  .grafis-pojok { width: 48px; height: 48px; }
+  .deskripsi-teks { font-size: 17px; }
+  .course-judul { font-size: 24px; }
+  .course-subjudul { font-size: 13px; }
+  .panel-filter { padding: 18px; }
+  .modal-menu-daftar a { font-size: 19px; padding: 15px 4px; }
+  .modal-menu-footer { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .modal-menu-sosial { align-items: flex-start; }
+}
+
+@media (max-width: 360px) {
+  .kontainer { padding: 0 14px; }
+  .hero-judul { font-size: 23px; }
+  .hero-deskripsi { font-size: 14px; }
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .hero-cta .tombol-utama, .hero-cta .tombol-garis { justify-content: center; }
+  .deskripsi-teks { font-size: 15px; }
+  .deskripsi-sumber { font-size: 21px; }
+  .kartu-aksi { grid-template-columns: 1fr; }
+  .footer-sosial { flex-wrap: wrap; }
+  .modal-menu-panel { top: 10px; right: 10px; left: 10px; padding: 18px; }
+  .modal-menu-daftar a { font-size: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="navbar" id="navbar-utama">
+  <div class="kontainer navbar-inner">
+    <a href="#beranda" class="logo">CC.</a>
+    <nav class="menu-navigasi">
+      <a href="#beranda" class="aktif">Home</a>
+      <a href="#tentang">About Us</a>
+      <a href="#course">Course</a>
+    </nav>
+    <div class="navbar-aksi-kanan">
+      <button class="tombol-toggle-tema" id="tombol-toggle-tema" aria-label="Ganti tema">
+        <i data-lucide="sun" class="ikon-tema-terang"></i>
+        <i data-lucide="moon" class="ikon-tema-gelap"></i>
+      </button>
+      <a href="#course" class="tombol-utama" id="tombol-mulai-desktop">Start Now <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+      <button class="tombol-menu-mobile" id="tombol-menu-mobile" aria-label="Buka menu" aria-expanded="false">
+        <i data-lucide="align-right" class="ikon-buka"></i>
+        <i data-lucide="x" class="ikon-tutup"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="modal-menu-mobile" id="modal-menu-mobile">
+  <div class="modal-menu-panel">
+    <div class="modal-menu-header">
+      <span class="modal-menu-label">MENU</span>
+      <button class="modal-menu-tutup" id="modal-menu-tutup">Close <i data-lucide="x"></i></button>
+    </div>
+    <nav class="modal-menu-daftar">
+      <a href="#beranda" class="tautan-menu-mobile">Home</a>
+      <a href="#tentang" class="tautan-menu-mobile">About Us</a>
+      <a href="#course" class="tautan-menu-mobile">Course</a>
+    </nav>
+    <div class="modal-menu-footer">
+      <a href="mailto:halo@codingcamp.id" class="modal-menu-email">halo@codingcamp.id</a>
+      <div class="modal-menu-sosial">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section class="hero" id="beranda">
+    <div class="kontainer hero-grid">
+      <div>
+        <p class="hero-label"><i data-lucide="sparkles" style="width:14px;height:14px;"></i> Coding Camp 2026</p>
+        <h1 class="hero-judul">Belajar coding dari nol, jadi siap kerja.</h1>
+        <p class="hero-deskripsi">CC. menyusun jalur belajar terstruktur dari dasar sampai mahir, dibimbing mentor industri, tanpa basa basi teori yang tidak terpakai.</p>
+        <div class="hero-cta">
+          <a href="#course" class="tombol-utama">Start Now <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+          <a href="#tentang" class="tombol-garis">Lihat Kurikulum</a>
+        </div>
+      </div>
+      <div class="hero-ilustrasi">
+        <div class="bingkai-ilustrasi-hero">
+          <img src="assets/illustration-hero.svg" alt="Ilustrasi belajar coding" width="500" height="460" loading="eager">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-deskripsi" id="tentang">
+    <div class="kontainer deskripsi-grid">
+      <div class="deskripsi-ilustrasi">
+        <div class="bingkai-ilustrasi-about">
+          <img src="assets/illustration-about.svg" alt="Ilustrasi tim kurikulum CC." width="400" height="380" loading="lazy">
+        </div>
+      </div>
+      <div>
+        <p class="deskripsi-teks">Kami percaya belajar coding paling efektif lewat praktik langsung, bukan hafalan teori. Setiap materi di CC. dirancang berdasarkan kebutuhan nyata dunia kerja, disusun bertahap agar siapa pun bisa mengikuti sesuai levelnya masing masing.</p>
+        <p class="deskripsi-sumber">Tim Kurikulum CC.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-course" id="course">
+    <div class="kontainer">
+      <div class="course-judul-wrap">
+        <h2 class="course-judul">Pilih Course Kamu</h2>
+        <p class="course-subjudul">Cari berdasarkan topik atau saring sesuai tingkat kemampuanmu</p>
+      </div>
+
+      <div class="course-layout">
+        <div class="panel-filter">
+          <div class="kotak-cari">
+            <i data-lucide="search"></i>
+            <input type="text" id="input-cari" placeholder="Cari nama course...">
+          </div>
+
+          <p class="filter-label">Tingkat Pembelajaran</p>
+          <div id="daftar-filter">
+            <div class="opsi-radio">
+              <input type="radio" name="tingkat" id="filter-semua" value="semua" checked>
+              <label for="filter-semua">Semua Tingkat</label>
+            </div>
+            <div class="opsi-radio">
+              <input type="radio" name="tingkat" id="filter-dasar" value="dasar">
+              <label for="filter-dasar">Dasar</label>
+            </div>
+            <div class="opsi-radio">
+              <input type="radio" name="tingkat" id="filter-menengah" value="menengah">
+              <label for="filter-menengah">Menengah</label>
+            </div>
+            <div class="opsi-radio">
+              <input type="radio" name="tingkat" id="filter-sulit" value="sulit">
+              <label for="filter-sulit">Sulit</label>
+            </div>
+          </div>
+
+          <button class="tombol-reset-filter" id="tombol-reset">Reset Filter</button>
+        </div>
+
+        <div class="kolom-course">
+          <div class="grid-kartu-course" id="grid-course"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="overlay-detail" id="overlay-detail">
+  <div class="panel-detail" id="panel-detail" role="dialog" aria-modal="true"></div>
+</div>
+
+<footer class="footer">
+  <div class="kontainer">
+    <div class="footer-grid">
+      <div>
+        <a href="#beranda" class="footer-logo">CC.</a>
+        <p class="footer-deskripsi">Coding Camp membantu kamu belajar pemrograman secara terstruktur, dari dasar sampai siap kerja.</p>
+        <div class="footer-sosial">
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+          <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        </div>
+      </div>
+      <div class="footer-kolom">
+        <p class="footer-kolom-judul">Navigasi</p>
+        <ul>
+          <li><a href="#beranda">Home</a></li>
+          <li><a href="#tentang">About Us</a></li>
+          <li><a href="#course">Course</a></li>
+        </ul>
+      </div>
+      <div class="footer-kolom">
+        <p class="footer-kolom-judul">Kontak</p>
+        <ul>
+          <li><a href="mailto:halo@codingcamp.id">halo@codingcamp.id</a></li>
+          <li><a href="#">+62 812 3456 7890</a></li>
+          <li><a href="#">Jakarta, Indonesia</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bawah">
+      <p>© 2026 CC. Coding Camp. Seluruh hak cipta dilindungi.</p>
+      <p>Dibuat untuk calon developer Indonesia</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+lucide.createIcons();
+
+const elemenHtml = document.documentElement;
+const tombolToggleTema = document.getElementById('tombol-toggle-tema');
+const temaTersimpan = localStorage.getItem('cc-tema');
+
+if (temaTersimpan === 'gelap') {
+  elemenHtml.setAttribute('data-tema', 'gelap');
+}
+
+tombolToggleTema.addEventListener('click', function () {
+  const temaSekarang = elemenHtml.getAttribute('data-tema');
+  if (temaSekarang === 'gelap') {
+    elemenHtml.removeAttribute('data-tema');
+    localStorage.setItem('cc-tema', 'terang');
+  } else {
+    elemenHtml.setAttribute('data-tema', 'gelap');
+    localStorage.setItem('cc-tema', 'gelap');
+  }
+});
+
+const navbarUtama = document.getElementById('navbar-utama');
+
+window.addEventListener('scroll', function () {
+  if (window.scrollY > 8) {
+    navbarUtama.classList.add('navbar-scroll');
+  } else {
+    navbarUtama.classList.remove('navbar-scroll');
+  }
+});
+
+const tombolMenuMobile = document.getElementById('tombol-menu-mobile');
+const modalMenuMobile = document.getElementById('modal-menu-mobile');
+const modalMenuTutup = document.getElementById('modal-menu-tutup');
+const tautanMenuMobile = document.querySelectorAll('.tautan-menu-mobile');
+
+function bukaMenuMobile() {
+  modalMenuMobile.classList.add('tampil');
+  tombolMenuMobile.classList.add('aktif');
+  tombolMenuMobile.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+
+function tutupMenuMobile() {
+  modalMenuMobile.classList.remove('tampil');
+  tombolMenuMobile.classList.remove('aktif');
+  tombolMenuMobile.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+tombolMenuMobile.addEventListener('click', function () {
+  if (modalMenuMobile.classList.contains('tampil')) {
+    tutupMenuMobile();
+  } else {
+    bukaMenuMobile();
+  }
+});
+
+modalMenuTutup.addEventListener('click', tutupMenuMobile);
+
+modalMenuMobile.addEventListener('click', function (peristiwa) {
+  if (peristiwa.target === modalMenuMobile) {
+    tutupMenuMobile();
+  }
+});
+
+tautanMenuMobile.forEach(function (tautan) {
+  tautan.addEventListener('click', tutupMenuMobile);
+});
+
+let semuaCourse = [];
+let kataKunciCari = '';
+let tingkatDipilih = 'semua';
+
+const gridCourse = document.getElementById('grid-course');
+const inputCari = document.getElementById('input-cari');
+const tombolReset = document.getElementById('tombol-reset');
+
+async function muatCourse() {
+  try {
+    const respon = await fetch('course.json');
+    semuaCourse = await respon.json();
+    renderCourse();
+  } catch (kesalahan) {
+    gridCourse.innerHTML = '<div class="status-kosong"><p>Gagal memuat data course</p><p>Pastikan file course.json berada di folder yang sama</p></div>';
+  }
+}
+
+function renderCourse() {
+  const hasil = semuaCourse.filter(function (item) {
+    const cocokTingkat = tingkatDipilih === 'semua' || item.tingkat === tingkatDipilih;
+    const cocokCari = item.judul.toLowerCase().includes(kataKunciCari.toLowerCase());
+    return cocokTingkat && cocokCari;
+  });
+
+  if (hasil.length === 0) {
+    gridCourse.innerHTML = '<div class="status-kosong"><i data-lucide="search-x"></i><p>Course tidak ditemukan</p><p>Coba ubah kata kunci atau filter tingkat</p></div>';
+    lucide.createIcons();
+    return;
+  }
+
+  gridCourse.innerHTML = hasil.map(function (item) {
+    return `
+      <article class="kartu-course">
+        <div class="kartu-preview">
+          <img src="${item.gambar}" alt="${item.judul}" loading="lazy">
+        </div>
+        <div class="kartu-isi">
+          <div class="kartu-header-meta">
+            <p class="kartu-kategori">${item.kategori}</p>
+            <div class="kartu-durasi"><i data-lucide="clock"></i><span>${item.durasi}</span></div>
+          </div>
+          <h3 class="kartu-judul">${item.judul}</h3>
+          <p class="kartu-deskripsi">${potongTeks(item.deskripsi)}</p>
+          <div class="kartu-tingkat-baris">
+            <span class="lencana-tingkat-inline ${item.tingkat}">${kapitalkan(item.tingkat)}</span>
+          </div>
+          <div class="kartu-aksi">
+            <button type="button" class="tombol-detail" data-id="${item.id}">Detail</button>
+            <a href="${item.url}" class="tombol-belajar">Mulai</a>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  lucide.createIcons();
+
+  document.querySelectorAll('.tombol-detail').forEach(function (tombol) {
+    tombol.addEventListener('click', function () {
+      const id = Number(tombol.getAttribute('data-id'));
+      const item = semuaCourse.find(function (c) { return c.id === id; });
+      if (item) bukaDetailCourse(item);
+    });
+  });
+}
+
+function potongTeks(teks) {
+  if (teks.length <= 100) return teks;
+  return teks.slice(0, 100).trim() + '...';
+}
+
+function kapitalkan(teks) {
+  return teks.charAt(0).toUpperCase() + teks.slice(1);
+}
+
+const overlayDetail = document.getElementById('overlay-detail');
+const panelDetail = document.getElementById('panel-detail');
+
+function bukaDetailCourse(item) {
+  panelDetail.innerHTML = `
+    <div class="panel-detail-pegangan"></div>
+    <button type="button" class="panel-detail-tutup" id="panel-detail-tutup" aria-label="Tutup detail"><i data-lucide="x"></i></button>
+    <div class="panel-detail-gambar"><img src="${item.gambar}" alt="${item.judul}"></div>
+    <div class="panel-detail-baris-meta">
+      <span class="panel-detail-kategori">${item.kategori}</span>
+      <span class="panel-detail-durasi"><i data-lucide="clock"></i>${item.durasi}</span>
+    </div>
+    <h2 class="panel-detail-judul">${item.judul}</h2>
+    <p class="panel-detail-deskripsi">${item.deskripsi}</p>
+    <div class="panel-detail-footer">
+      <span class="lencana-tingkat-inline ${item.tingkat}">${kapitalkan(item.tingkat)}</span>
+      <a href="${item.url}" class="tombol-belajar">Mulai Belajar</a>
+    </div>
+  `;
+  lucide.createIcons();
+  overlayDetail.classList.add('tampil');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('panel-detail-tutup').addEventListener('click', tutupDetailCourse);
+}
+
+function tutupDetailCourse() {
+  overlayDetail.classList.remove('tampil');
+  document.body.style.overflow = '';
+}
+
+overlayDetail.addEventListener('click', function (peristiwa) {
+  if (peristiwa.target === overlayDetail) tutupDetailCourse();
+});
+
+inputCari.addEventListener('input', function (peristiwa) {
+  kataKunciCari = peristiwa.target.value;
+  renderCourse();
+});
+
+document.getElementById('daftar-filter').addEventListener('change', function (peristiwa) {
+  tingkatDipilih = peristiwa.target.value;
+  renderCourse();
+});
+
+tombolReset.addEventListener('click', function () {
+  kataKunciCari = '';
+  tingkatDipilih = 'semua';
+  inputCari.value = '';
+  document.getElementById('filter-semua').checked = true;
+  renderCourse();
+});
+
+muatCourse();
+</script>
+
+</body>
+</html>
