@@ -7,6 +7,7 @@
     "tingkat": "dasar",
     "kategori": "Frontend",
     "durasi": "6 minggu",
+    "upload_at": "2026-01-12",
     "url": "detail.html?id=1"
   },
   {
@@ -17,6 +18,7 @@
     "tingkat": "menengah",
     "kategori": "Frontend",
     "durasi": "8 minggu",
+    "upload_at": "2026-02-03",
     "url": "detail.html?id=2"
   },
   {
@@ -27,6 +29,7 @@
     "tingkat": "sulit",
     "kategori": "Backend",
     "durasi": "10 minggu",
+    "upload_at": "2026-02-18",
     "url": "detail.html?id=3"
   },
   {
@@ -37,6 +40,7 @@
     "tingkat": "dasar",
     "kategori": "Database",
     "durasi": "5 minggu",
+    "upload_at": "2026-03-05",
     "url": "detail.html?id=4"
   },
   {
@@ -47,6 +51,7 @@
     "tingkat": "menengah",
     "kategori": "Backend",
     "durasi": "8 minggu",
+    "upload_at": "2026-03-22",
     "url": "detail.html?id=5"
   },
   {
@@ -57,6 +62,7 @@
     "tingkat": "sulit",
     "kategori": "Backend",
     "durasi": "12 minggu",
+    "upload_at": "2026-04-09",
     "url": "detail.html?id=6"
   },
   {
@@ -67,6 +73,7 @@
     "tingkat": "dasar",
     "kategori": "Desain",
     "durasi": "4 minggu",
+    "upload_at": "2026-04-27",
     "url": "detail.html?id=7"
   },
   {
@@ -77,6 +84,7 @@
     "tingkat": "menengah",
     "kategori": "Frontend",
     "durasi": "7 minggu",
+    "upload_at": "2026-05-14",
     "url": "detail.html?id=8"
   },
   {
@@ -87,6 +95,7 @@
     "tingkat": "sulit",
     "kategori": "Keamanan",
     "durasi": "9 minggu",
+    "upload_at": "2026-06-01",
     "url": "detail.html?id=9"
   }
 ]
