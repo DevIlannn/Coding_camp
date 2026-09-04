@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Guidelines & Requirements</title>
+<style>
+:root {
+  --warna-latar: #F5F0E6;
+  --warna-teks: #121212;
+  --spasi-halaman: 32px;
+  --lebar-maksimal: 720px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--warna-latar);
+  color: var(--warna-teks);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding: 64px var(--spasi-halaman) 96px;
+  display: flex;
+  justify-content: center;
+}
+
+.kontainer {
+  width: 100%;
+  max-width: var(--lebar-maksimal);
+}
+
+.judul {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.subjudul {
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 40px;
+}
+
+.deskripsi {
+  text-align: left;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-top: 12px;
+  color: var(--warna-teks);
+}
+
+.deskripsi + .deskripsi {
+  margin-top: 16px;
+}
+
+.grid-masonry {
+  margin-top: 40px;
+}
+
+.grid-item {
+  width: calc(50% - 8px);
+  margin-bottom: 16px;
+}
+
+.grid-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+.grid-sizer {
+  width: calc(50% - 8px);
+}
+
+.daftar-larangan {
+  list-style: none;
+  counter-reset: item;
+  margin-top: 12px;
+}
+
+.daftar-larangan li {
+  counter-increment: item;
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.daftar-larangan li::before {
+  content: counter(item);
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--warna-teks);
+  color: var(--warna-latar);
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 480px) {
+  .judul {
+    font-size: 1.7rem;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="kontainer">
+    <h1 class="judul">Design Guidelines & Requirements</h1>
+    <h2 class="subjudul">Acuan gaya visual untuk pembuatan antarmuka dashboard</h2>
+
+    <p class="deskripsi">Buat desain website dengan mengikuti gaya visual pada ketiga referensi berikut secara ketat. Gunakan struktur sidebar navigasi di sisi kiri dengan lebar tetap, area konten utama di sisi kanan yang lebih luas, kartu statistik ringkas di bagian atas konten, dan tabel atau daftar data di bagian bawahnya. Tentukan satu warna primary yang tegas sebagai identitas utama, satu warna secondary sebagai penyeimbang atau aksen status, dan terapkan keduanya secara konsisten pada tombol, ikon, label status, dan elemen interaktif lain di seluruh halaman.</p>
+
+    <p class="deskripsi">Jaga jarak antar elemen tetap lega dan seragam, hindari kepadatan visual yang berlebihan, dan pastikan tipografi memiliki hierarki yang jelas antara judul, label, dan isi data. Ikon mengikuti satu gaya dan ketebalan garis yang sama di seluruh halaman, sudut elemen kartu dan tombol konsisten satu sama lain, dan setiap warna yang dipakai berasal dari variabel warna yang sudah ditentukan, bukan nilai warna yang ditulis langsung di setiap elemen.</p>
+
+    <div class="grid-masonry" id="grid">
+      <div class="grid-sizer"></div>
+      <div class="grid-item"><img src="foto-1.jpg"></div>
+      <div class="grid-item"><img src="foto-8.jpg"></div>
+      <div class="grid-item"><img src="foto-3.jpg"></div>
+      <div class="grid-item"><img src="foto-2.jpg"></div>
+      <div class="grid-item"><img src="foto-4.jpg"></div>
+      <div class="grid-item"><img src="foto-5.jpg"></div>
+      <div class="grid-item"><img src="foto-6.jpg"></div>
+      <div class="grid-item"><img src="foto-7.jpg"></div>
+      <div class="grid-item"><img src="foto-9.jpg"></div>
+    </div>
+
+    <h2 class="subjudul">Rules</h2>
+    <ol class="daftar-larangan">
+      <li>Jangan menggunakan simbol em dash (—) dalam project.</li>
+      <li>Konsisten menggunakan satu bahasa di semua layer, variable, UI text, documentation.</li>
+      <li>Gunakan kombinasi font yang cocok, pastikan mengambil kombinasi di gambar yang ada pada gambar masonary</li>
+      <li>Dilarang menggunakan Multer dan fs module untuk kebutuhan expressjs.</li>
+      <li>Dilarang menggunakan warna hardcode, semua color value harus dari CSS custom properties di :root{}.</li>
+      <li>Light theme sebagai default, Dark theme variant kalau diminta.</li>
+      <li>Website selalu menggunakan clean UI/UX design, zero bloat, no glow effect and line before.</li>
+      <li>Dilarang menggunakan comment tags pada code, code self documents.</li>
+      <li>Menggunakan kombinasi cdn icon yaitu Lucide icons + Clickicons + DevIcons dengan memastikan memilih icon yang modern, minimal, dan weight konsisten, serta dilarang keras menggunakan icon svg.</li>
+    </ol>
+
+    <h2 class="subjudul">Noted</h2>
+    <ol class="daftar-larangan">
+      <li>Jangan mendahului perintah, setiap langkah selanjutnya butuh konfirmasi dulu dari Ilan.</li>
+      <li>Perintah utama adalah yang disebutkan spesifik, jika tidak bisa dijalankan maka konfirmasi dulu untuk solve masalahnya.</li>
+      <li>Jangan melakukan aktivitas diluar perintah.</li>
+      <li>Deliver production ready, board presentable, zero scaffolding.</li>
+      <li>Jangan terlalu banyak bertanya, jika tidak ada perintah spesifik tetap jalankan sesuai perintah yang ada. Jika salah nanti menerima revisi, dengan kebebasan yang sesuai dan tidak melanggar perintah utama.</li>
+    </ol>
+
+    <p class="deskripsi">Gunakan penggunaan pengerjaan website seperti ini : Terima perintah, cek prompt persona, cek apakah perintah bertolak dengan persona, jalankan perintah, presenting hasil.</p>
+    <p class="deskripsi">Alur kerja pengerjaan mengikuti rantai berikut. Lihat perintah, lalu analisis perintah (r), lalu jalankan perintah (f), lalu lihat kembali perintah (e), lalu selesai. Pada tahap (r), periksa apakah perintah yang diberikan bertentangan dengan rules yang sudah ditetapkan, jika bertentangan maka tanyakan konfirmasi sebelum lanjut. Pada tahap (f), periksa apakah konten yang dibutuhkan berupa placeholder atau data langsung, dan ajukan pertanyaan yang benar benar diperlukan untuk mengerjakan permintaan, dengan mengasumsikan jawaban dari pertanyaan yang sudah pernah ditanyakan sebelumnya di percakapan. Pada tahap (e), susun daftar periksa berisi status setiap perintah, pastikan urutan pengerjaan sudah sesuai permintaan, dan pastikan tidak ada eksekusi atau fitur tambahan di luar permintaan, kecuali memang diperlukan untuk menjalankan permintaan itu sendiri, jika tidak diperlukan maka tanyakan konfirmasi terlebih dahulu.</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+  <script>
+    var grid = document.querySelector('#grid');
+    var msnry = new Masonry(grid, {
+      itemSelector: '.grid-item',
+      columnWidth: '.grid-sizer',
+      percentPosition: true,
+      gutter: 16
+    });
+    imagesLoaded(grid).on('progress', function() {
+      msnry.layout();
+    });
+  </script>
+</body>
+</html>
