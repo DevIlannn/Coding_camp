@@ -3,46 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CC. — Coding Camp</title>
+<title>Coding Camp RPL 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Cookie&family=Cherry+Bomb+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <style>
 :root {
-  --warna-latar: #FAFAFA;
-  --warna-permukaan: #FFFFFF;
-  --warna-gelap: #0D0D0D;
-  --warna-gelap-lembut: #1A1A1A;
-  --warna-aksen: #FF5A1F;
-  --warna-aksen-lembut: #FFE7DB;
-  --warna-teks-sekunder: #7A7A7A;
-  --warna-garis: #EBEBEB;
-  --warna-sukses: #1F8A4C;
-  --warna-madya: #C98A00;
-  --warna-sulit: #C93A3A;
-  --warna-teks-terbalik: #FFFFFF;
-  --font-tampil: 'Poppins', sans-serif;
+  --color-background: #FAFAFA;
+  --color-surface: #FFFFFF;
+  --color-dark: #0D0D0D;
+  --color-dark-soft: #1A1A1A;
+  --color-accent: #FF5A1F;
+  --color-accent-soft: #FFE7DB;
+  --color-text-secondary: #7A7A7A;
+  --color-border: #EBEBEB;
+  --color-success: #1F8A4C;
+  --color-medium: #C98A00;
+  --color-hard: #C93A3A;
+  --color-text-inverse: #FFFFFF;
+  --font-display: 'Poppins', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --font-aksen: 'Cookie', cursive;
+  --font-accent: 'Cookie', cursive;
   --font-logo: 'Cherry Bomb One', cursive;
-  --radius-kartu: 20px;
-  --radius-tombol: 15px;
-  --lebar-kontainer: 1200px;
+  --radius-card: 20px;
+  --radius-button: 15px;
+  --container-width: 1200px;
   --navbar-bg: rgba(255, 255, 255, 0.98);
 }
 
-html[data-tema="gelap"] {
-  --warna-latar: #0D0D0D;
-  --warna-permukaan: #1A1A1A;
-  --warna-gelap: #FAFAFA;
-  --warna-gelap-lembut: #EBEBEB;
-  --warna-aksen: #FF6B35;
-  --warna-aksen-lembut: #3A2318;
-  --warna-teks-sekunder: #9A9A9A;
-  --warna-garis: #2A2A2A;
+html[data-theme="dark"] {
+  --color-background: #0D0D0D;
+  --color-surface: #1A1A1A;
+  --color-dark: #FAFAFA;
+  --color-dark-soft: #EBEBEB;
+  --color-accent: #FF6B35;
+  --color-accent-soft: #3A2318;
+  --color-text-secondary: #9A9A9A;
+  --color-border: #2A2A2A;
   --navbar-bg: rgba(13, 13, 13, 0.98);
-  --warna-teks-terbalik: #0D0D0D;
+  --color-text-inverse: #0D0D0D;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -50,9 +53,9 @@ html[data-tema="gelap"] {
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: var(--font-tampil);
-  background: var(--warna-latar);
-  color: var(--warna-gelap);
+  font-family: var(--font-display);
+  background: var(--color-background);
+  color: var(--color-dark);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   transition: background 0.3s ease, color 0.3s ease;
@@ -64,52 +67,51 @@ ul { list-style: none; }
 img { max-width: 100%; display: block; }
 
 :focus-visible {
-  outline: 2px solid var(--warna-aksen);
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
 
-.kontainer {
-  max-width: var(--lebar-kontainer);
+.container {
+  max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 32px;
 }
 
-.tombol-utama {
+.button-primary {
   z-index: 9999;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--warna-aksen);
-  color: var(--warna-teks-terbalik);
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
   font-weight: 500;
   font-size: 12px;
   padding: 14px 28px;
-  border-radius: var(--radius-tombol);
+  border-radius: var(--radius-button);
   transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.tombol-utama:hover {
+.button-primary:hover {
   filter: brightness(1.1);
   transform: translateY(-2px);
 }
 
-.tombol-garis {
+.button-outline {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  border: 1.5px solid var(--warna-gelap);
-  color: var(--warna-gelap);
+  border: 1.5px solid var(--color-dark);
+  color: var(--color-dark);
   font-weight: 500;
   font-size: 11.2px;
   padding: 12px 24px;
-  border-radius: var(--radius-tombol);
+  border-radius: var(--radius-button);
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-.tombol-garis:hover {
-  background: var(--warna-aksen);
-  border-color: var(--warna-aksen);
-  color: var(--warna-teks-terbalik);
+.button-outline:hover {
+  background-color: var(--color-dark);
+  color: var(--color-text-inverse);
 }
 
 .navbar {
@@ -131,194 +133,180 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-logo);
   font-size: 20.8px;
   font-weight: 400;
-  color: var(--warna-aksen);
+  color: var(--color-accent);
 }
 
-.menu-navigasi {
+.nav-menu {
   display: flex;
   align-items: center;
   gap: 40px;
 }
 
-.menu-navigasi a {
+.nav-menu a {
   font-size: 12px;
   font-weight: 500;
-  color: var(--warna-gelap);
+  color: var(--color-dark);
   position: relative;
   padding-bottom: 4px;
 }
 
-.menu-navigasi a.aktif {
-  color: var(--warna-aksen);
+.nav-menu a.active {
+  color: var(--color-accent);
 }
 
-.menu-navigasi a::after {
+.nav-menu a::after {
   content: '';
   position: absolute;
   left: 0;
   bottom: 0;
   width: 0;
   height: 2px;
-  background: var(--warna-aksen);
+  background: var(--color-accent);
   transition: width 0.25s ease;
 }
 
-.menu-navigasi a:hover::after {
+.nav-menu a:hover::after {
   width: 100%;
 }
 
-.navbar-aksi-kanan {
+.navbar-actions-right {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.tombol-toggle-tema {
+.theme-toggle-button {
   width: 38px;
   height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  color: var(--warna-gelap);
+  color: var(--color-dark);
   transition: background 0.2s ease, color 0.2s ease;
 }
 
-.tombol-toggle-tema:hover {
-  color: var(--warna-aksen);
+.theme-toggle-button:hover {
+  color: var(--color-accent);
 }
 
-.tombol-toggle-tema .lucide {
+.theme-toggle-button .lucide {
   width: 19px;
   height: 19px;
 }
 
-.ikon-tema-terang { display: block; }
-.ikon-tema-gelap { display: none; }
+.icon-theme-light { display: block; }
+.icon-theme-dark { display: none; }
 
-html[data-tema="gelap"] .ikon-tema-terang { display: none; }
-html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
+html[data-theme="dark"] .icon-theme-light { display: none; }
+html[data-theme="dark"] .icon-theme-dark { display: block; }
 
-.tombol-menu-mobile {
+.mobile-menu-button {
   display: none;
   align-items: center;
   justify-content: center;
   width: 28px;
   height: 28px;
-  color: var(--warna-gelap);
+  color: var(--color-dark);
 }
 
-.tombol-menu-mobile .lucide {
+.mobile-menu-button .lucide {
   width: 24px;
   height: 24px;
   transition: opacity 0.2s ease;
 }
 
-.tombol-menu-mobile .ikon-tutup { display: none; }
+.mobile-menu-button .icon-close { display: none; }
 
-.tombol-menu-mobile.aktif .ikon-buka { display: none; }
-.tombol-menu-mobile.aktif .ikon-tutup { display: block; }
+.mobile-menu-button.active .icon-open { display: none; }
+.mobile-menu-button.active .icon-close { display: block; }
 
-.modal-menu-mobile {
+.mobile-menu-modal {
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: color-mix(in srgb, var(--warna-gelap) 50%, transparent);
+  background: color-mix(in srgb, #000 55%, transparent);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
 
-.modal-menu-mobile.tampil {
+.mobile-menu-modal.is-visible {
   opacity: 1;
   pointer-events: auto;
 }
 
-.modal-menu-panel {
+.mobile-menu-panel {
   position: absolute;
   top: 8px;
   right: 16px;
   left: 16px;
-  background: var(--warna-permukaan);
+  background: var(--color-surface);
   border-radius: 18px;
   padding: 24px;
   transform: translateY(-16px);
   transition: transform 0.3s ease;
-  box-shadow: 0 20px 48px color-mix(in srgb, var(--warna-gelap) 18%, transparent);
+  box-shadow: 0 20px 48px color-mix(in srgb, #000 18%, transparent);
 }
 
-.modal-menu-mobile.tampil .modal-menu-panel {
+.mobile-menu-modal.is-visible .mobile-menu-panel {
   transform: translateY(0);
 }
 
-.modal-menu-header {
+.mobile-menu-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--warna-garis);
+  border-bottom: 1px solid var(--color-border);
   margin-bottom: 8px;
 }
 
-.modal-menu-label {
+.mobile-menu-label {
   font-family: var(--font-mono);
   font-size: 9.6px;
   letter-spacing: 0.08em;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
 }
 
-.modal-menu-tutup {
+.mobile-menu-close {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 11.2px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
 }
 
-.modal-menu-tutup .lucide { width: 16px; height: 16px; }
+.mobile-menu-close .lucide { width: 16px; height: 16px; }
 
-.modal-menu-daftar a {
+.mobile-menu-list a {
   display: block;
   padding: 18px 4px;
   font-size: 17.6px;
   font-weight: 600;
-  color: var(--warna-gelap);
-  border-bottom: 1px solid var(--warna-garis);
+  color: var(--color-dark);
+  border-bottom: 1px solid var(--color-border);
   transition: color 0.2s ease;
 }
 
-.modal-menu-daftar a:hover {
-  color: var(--warna-aksen);
+.mobile-menu-list a:hover {
+  color: var(--color-accent);
 }
 
-.modal-menu-daftar a:last-child { border-bottom: none; }
+.mobile-menu-list a:last-child { border-bottom: none; }
 
-.modal-menu-footer {
+.mobile-menu-footer {
   padding-top: 16px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
 
-.modal-menu-email {
+.mobile-menu-email {
   font-size: 10.4px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
   text-decoration: underline;
 }
-
-.modal-menu-sosial {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  align-items: flex-end;
-}
-
-.modal-menu-sosial a {
-  font-size: 10.4px;
-  color: var(--warna-teks-sekunder);
-}
-
-.modal-menu-sosial a:hover { color: var(--warna-gelap); }
 
 
 .hero {
@@ -333,7 +321,7 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
   padding: 88px 0;
   overflow: hidden;
   z-index: 1;
-  background: var(--warna-latar);
+  background: var(--color-background);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M24 19v10M19 24h10' stroke='%23888888' stroke-width='1.2' stroke-linecap='round' opacity='0.35'/%3E%3C/svg%3E");
   background-size: 48px 48px;
   background-position: center;
@@ -344,7 +332,7 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
   height: 100vh;
 }
 
-.hero .kontainer { width: 100%; }
+.hero .container { width: 100%; }
 
 .hero-grid {
   display: grid;
@@ -358,14 +346,14 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
 .hero-label {
   font-family: var(--font-mono);
   font-size: 10.4px;
-  color: var(--warna-aksen);
+  color: var(--color-accent);
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.hero-judul {
+.hero-title {
   font-size: 41.6px;
   font-weight: 700;
   line-height: 1.12;
@@ -373,9 +361,9 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
   margin-bottom: 24px;
 }
 
-.hero-deskripsi {
+.hero-description {
   font-size: 13.6px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
   max-width: 460px;
   margin-bottom: 36px;
 }
@@ -386,45 +374,45 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
   align-items: center;
 }
 
-.hero-ilustrasi {
+.hero-illustration {
   position: relative;
-  padding: 20px 28px 28px 0;
+  padding: 15px 28px 28px 0;
 }
 
-.bingkai-ilustrasi-hero {
+.hero-illustration-frame {
   position: relative;
   z-index: 2;
 }
 
-.bingkai-ilustrasi-hero img {
+.hero-illustration-frame img {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.aksen-hero-satu {
+.hero-accent-one {
   position: absolute;
   top: 0;
   right: 0;
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: var(--warna-aksen-lembut);
+  background: var(--color-accent-soft);
   z-index: 1;
 }
 
-.aksen-hero-dua {
+.hero-accent-two {
   position: absolute;
   bottom: 6px;
   left: 0;
   width: 90px;
   height: 90px;
-  border: 3px solid var(--warna-gelap);
+  border: 3px solid var(--color-dark);
   border-radius: 20px;
   z-index: 1;
 }
 
-.section-deskripsi {
+.section-about {
   position: sticky;
   top: 0;
   min-height: 100vh;
@@ -432,59 +420,164 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
   display: flex;
   align-items: center;
   padding: 90px 0;
-  border-top: 1px solid var(--warna-garis);
-  background: var(--warna-latar);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-background);
   z-index: 2;
 }
 
-.section-deskripsi .kontainer { width: 100%; }
+.section-about .container { width: 100%; }
 
-.deskripsi-grid {
+.about-grid {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   gap: 72px;
   align-items: center;
 }
 
-.deskripsi-ilustrasi {
+.about-illustration {
   position: relative;
   padding: 30px;
 }
 
-.bingkai-ilustrasi-about img {
+.about-illustration-frame img {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.grafis-pojok {
+.corner-graphic {
   position: absolute;
   width: 68px;
   height: 68px;
 }
 
-.grafis-kanan-atas {
+.corner-graphic-top-right {
   top: -6px;
   right: -6px;
 }
 
-.grafis-kiri-bawah {
+.corner-graphic-bottom-left {
   bottom: -6px;
   left: -6px;
 }
 
-.deskripsi-teks {
+.about-text {
   font-size: 19.2px;
   font-weight: 500;
   line-height: 1.5;
-  color: var(--warna-gelap);
+  color: var(--color-dark);
 }
 
-.deskripsi-sumber {
-  font-family: var(--font-aksen);
+.about-source {
+  font-family: var(--font-accent);
   font-size: 22.4px;
-  color: var(--warna-aksen);
+  color: var(--color-accent);
   margin-top: 24px;
+}
+
+.tech-float-card {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 16px 32px color-mix(in srgb, var(--color-dark) 12%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.tech-float-card i { font-size: 30px; }
+
+.tech-float-card-one {
+  top: 8px;
+  right: -18px;
+  animation: float-card-one 5s ease-in-out infinite;
+}
+
+.tech-float-card-two {
+  bottom: 36px;
+  left: -22px;
+  animation: float-card-two 6s ease-in-out infinite;
+}
+
+.tech-float-card-three {
+  bottom: -20px;
+  right: 48px;
+  animation: float-card-three 5.5s ease-in-out infinite;
+}
+
+.tech-float-card-four {
+  top: -22px;
+  left: 40px;
+  animation: float-card-two 5.8s ease-in-out infinite;
+}
+
+.tech-float-card-five {
+  top: 46%;
+  right: -30px;
+  animation: float-card-three 6.4s ease-in-out infinite;
+}
+
+.tech-float-card-six {
+  top: 42%;
+  left: -30px;
+  animation: float-card-one 6.8s ease-in-out infinite;
+}
+
+@keyframes float-card-one {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes float-card-two {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
+}
+
+@keyframes float-card-three {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.tech-marquee {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  padding: 22px 0;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 0 40px color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 56px;
+  animation: tech-marquee-scroll 26s linear infinite;
+}
+
+.tech-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.tech-marquee-item i {
+  font-size: 22px;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-accent) 35%, transparent));
+}
+
+@keyframes tech-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 .section-course {
@@ -492,24 +585,24 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
   top: 0;
   min-height: 100vh;
   padding: 90px 0 110px;
-  border-top: 1px solid var(--warna-garis);
-  background: var(--warna-latar);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-background);
   z-index: 3;
 }
 
-.course-judul-wrap {
+.course-title-wrap {
   text-align: center;
   margin-bottom: 56px;
 }
 
-.course-judul {
+.course-title {
   font-size: 28.8px;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
-.course-subjudul {
-  color: var(--warna-teks-sekunder);
+.course-subtitle {
+  color: var(--color-text-secondary);
   font-size: 12px;
   margin-top: 10px;
 }
@@ -521,75 +614,75 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
   align-items: start;
 }
 
-.panel-filter {
-  background: var(--warna-permukaan);
-  border: 1px solid var(--warna-garis);
-  border-radius: var(--radius-kartu);
+.filter-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
   padding: 24px;
   position: sticky;
   top: 100px;
   order: 2;
 }
 
-.kolom-course { order: 1; }
+.course-column { order: 1; }
 
-.kotak-cari {
+.search-box {
   position: relative;
   margin-bottom: 24px;
 }
 
-.kotak-cari input {
+.search-box input {
   width: 100%;
   font-family: inherit;
   font-size: 11.2px;
   padding: 13px 16px 13px 42px;
-  border: 1px solid var(--warna-garis);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
-  background: var(--warna-latar);
-  color: var(--warna-gelap);
+  background: var(--color-background);
+  color: var(--color-dark);
 }
 
-.kotak-cari input::placeholder { color: var(--warna-teks-sekunder); }
+.search-box input::placeholder { color: var(--color-text-secondary); }
 
-.kotak-cari input:focus {
-  border-color: var(--warna-aksen);
+.search-box input:focus {
+  border-color: var(--color-accent);
   outline: none;
 }
 
-.kotak-cari .lucide {
+.search-box .lucide {
   position: absolute;
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
   width: 17px;
   height: 17px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
 }
 
 .filter-label {
   font-family: var(--font-mono);
   font-size: 9.6px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
   text-transform: none;
   margin-bottom: 14px;
 }
 
-.opsi-radio {
+.radio-option {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 10px 0;
   cursor: pointer;
-  border-bottom: 1px solid var(--warna-garis);
+  border-bottom: 1px solid var(--color-border);
 }
 
-.opsi-radio:last-child { border-bottom: none; }
+.radio-option:last-child { border-bottom: none; }
 
-.opsi-radio input[type="radio"] {
+.radio-option input[type="radio"] {
   appearance: none;
   width: 18px;
   height: 18px;
-  border: 1.5px solid var(--warna-garis);
+  border: 1.5px solid var(--color-border);
   border-radius: 50%;
   position: relative;
   cursor: pointer;
@@ -597,78 +690,78 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
   transition: border-color 0.2s ease;
 }
 
-.opsi-radio input[type="radio"]:checked {
-  border-color: var(--warna-aksen);
+.radio-option input[type="radio"]:checked {
+  border-color: var(--color-accent);
 }
 
-.opsi-radio input[type="radio"]:checked::after {
+.radio-option input[type="radio"]:checked::after {
   content: '';
   position: absolute;
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: var(--warna-aksen);
+  background: var(--color-accent);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.opsi-radio label {
+.radio-option label {
   font-size: 11.2px;
   cursor: pointer;
   flex: 1;
 }
 
-.tombol-reset-filter {
+.reset-filter-button {
   width: 100%;
   margin-top: 20px;
   font-size: 10.4px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
   padding: 10px;
-  border: 1px dashed var(--warna-garis);
+  border: 1px dashed var(--color-border);
   border-radius: 10px;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.tombol-reset-filter:hover {
-  color: var(--warna-aksen);
-  border-color: var(--warna-aksen);
+.reset-filter-button:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
-.grid-kartu-course {
+.course-card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 
-.kartu-course {
-  background: var(--warna-permukaan);
-  border: 1px solid var(--warna-garis);
-  border-radius: var(--radius-kartu);
+.course-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.kartu-course:hover {
+.course-card:hover {
   transform: translateY(-4px);
-  border-color: var(--warna-aksen);
+  border-color: var(--color-accent);
 }
 
-.kartu-preview {
+.card-preview {
   aspect-ratio: 16/10;
   overflow: hidden;
   position: relative;
 }
 
-.kartu-preview img {
+.card-preview img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.lencana-tingkat {
+.level-badge {
   position: absolute;
   top: 14px;
   left: 14px;
@@ -676,25 +769,25 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
   font-size: 8.8px;
   font-weight: 500;
   padding: 5px 12px;
-  border-radius: var(--radius-tombol);
-  background: color-mix(in srgb, var(--warna-permukaan) 92%, transparent);
+  border-radius: var(--radius-button);
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
   backdrop-filter: blur(4px);
 }
 
-.lencana-tingkat.dasar { color: var(--warna-sukses); }
-.lencana-tingkat.menengah { color: var(--warna-madya); }
-.lencana-tingkat.sulit { color: var(--warna-sulit); }
+.level-badge.beginner { color: var(--color-success); }
+.level-badge.intermediate { color: var(--color-medium); }
+.level-badge.advanced { color: var(--color-hard); }
 
-.lencana-tingkat-inline {
+.level-badge-inline {
   display: inline-flex;
   align-items: center;
   font-family: var(--font-mono);
   font-size: 8.8px;
   font-weight: 500;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
 }
 
-.kartu-isi {
+.card-body {
   padding: 22px;
   display: flex;
   flex-direction: column;
@@ -702,43 +795,43 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
   flex: 1;
 }
 
-.kartu-header-meta {
+.card-header-meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
 
-.kartu-kategori {
+.card-category {
   font-family: var(--font-mono);
   font-size: 9.6px;
-  color: var(--warna-aksen);
+  color: var(--color-accent);
 }
 
-.kartu-durasi {
+.card-duration {
   display: flex;
   align-items: center;
   gap: 5px;
   font-size: 9.6px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
   flex-shrink: 0;
 }
 
-.kartu-durasi .lucide { width: 13px; height: 13px; }
+.card-duration .lucide { width: 13px; height: 13px; }
 
-.kartu-judul {
+.card-title {
   font-size: 13.6px;
   font-weight: 600;
   line-height: 1.4;
 }
 
-.kartu-deskripsi {
+.card-description {
   font-size: 10.8px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
   line-height: 1.55;
 }
 
-.kartu-tingkat-baris {
+.card-level-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -747,110 +840,111 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
   padding-top: 4px;
 }
 
-.kartu-tanggal {
+.card-date {
   font-size: 8.8px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
 }
 
-.kartu-aksi {
+.card-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-top: 6px;
 }
 
-.tombol-detail {
+.button-detail {
   text-align: center;
   padding: 11px 0;
-  border: 1.5px solid var(--warna-gelap);
+  border: 1.5px solid var(--color-dark);
+  color: var(--color-dark);
   border-radius: 12px;
   font-size: 10.4px;
   font-weight: 500;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
-.tombol-detail:hover {
-  background: var(--warna-gelap);
-  color: var(--warna-latar);
+.button-detail:hover {
+  background: var(--color-dark);
+  color: var(--color-text-inverse);
 }
 
-.tombol-belajar {
+.button-start-learning {
   text-align: center;
   padding: 11px 0;
-  background: var(--warna-aksen);
-  color: var(--warna-teks-terbalik);
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
   border-radius: 12px;
   font-size: 10.4px;
   font-weight: 500;
   transition: opacity 0.2s ease;
 }
 
-.tombol-belajar:hover { opacity: 0.85; }
+.button-start-learning:hover { opacity: 0.85; }
 
-.status-kosong {
+.empty-state {
   grid-column: 1 / -1;
   text-align: center;
   padding: 60px 20px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
 }
 
-.status-kosong .lucide {
+.empty-state .lucide {
   width: 36px;
   height: 36px;
   margin-bottom: 12px;
-  color: var(--warna-garis);
+  color: var(--color-border);
 }
 
-.status-kosong p:first-of-type {
+.empty-state p:first-of-type {
   font-weight: 600;
-  color: var(--warna-gelap);
+  color: var(--color-dark);
   margin-bottom: 6px;
 }
 
-.status-kosong p { font-size: 11.2px; }
+.empty-state p { font-size: 11.2px; }
 
-.overlay-detail {
+.detail-overlay {
   position: fixed;
   inset: 0;
   z-index: 300;
-  background: color-mix(in srgb, var(--warna-gelap) 55%, transparent);
+  background: color-mix(in srgb, #000 55%, transparent);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
 
-.overlay-detail.tampil {
+.detail-overlay.is-visible {
   opacity: 1;
   pointer-events: auto;
 }
 
-.panel-detail {
+.detail-panel {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   max-height: 88vh;
   overflow-y: auto;
-  background: var(--warna-permukaan);
+  background: var(--color-surface);
   border-radius: 24px 24px 0 0;
   padding: 12px 24px 32px;
   transform: translateY(100%);
   transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-.overlay-detail.tampil .panel-detail {
+.detail-overlay.is-visible .detail-panel {
   transform: translateY(0);
 }
 
-.panel-detail-pegangan {
+.detail-panel-handle {
   width: 40px;
   height: 4px;
-  background: var(--warna-garis);
+  background: var(--color-border);
   border-radius: 4px;
   margin: 0 auto 20px;
 }
 
-.panel-detail-tutup {
+.detail-panel-close {
   position: absolute;
   top: 16px;
   right: 20px;
@@ -860,27 +954,27 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  color: var(--warna-teks-sekunder);
-  background: var(--warna-latar);
+  color: var(--color-text-secondary);
+  background: var(--color-background);
 }
 
-.panel-detail-tutup .lucide { width: 17px; height: 17px; }
+.detail-panel-close .lucide { width: 17px; height: 17px; }
 
-.panel-detail-gambar {
+.detail-panel-image {
   width: 100%;
   aspect-ratio: 16/9;
-  border-radius: var(--radius-kartu);
+  border-radius: var(--radius-card);
   overflow: hidden;
   margin-bottom: 20px;
 }
 
-.panel-detail-gambar img {
+.detail-panel-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.panel-detail-baris-meta {
+.detail-panel-meta-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -888,52 +982,62 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
   margin-bottom: 12px;
 }
 
-.panel-detail-kategori {
+.detail-panel-category {
   font-family: var(--font-mono);
   font-size: 9.6px;
-  color: var(--warna-aksen);
+  color: var(--color-accent);
 }
 
-.panel-detail-durasi {
+.detail-panel-duration {
   display: flex;
   align-items: center;
   gap: 5px;
   font-size: 10.4px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
 }
 
-.panel-detail-durasi .lucide { width: 14px; height: 14px; }
+.detail-panel-duration .lucide { width: 14px; height: 14px; }
 
-.panel-detail-judul {
+.detail-panel-title {
   font-size: 19.2px;
   font-weight: 700;
   line-height: 1.3;
   margin-bottom: 14px;
 }
 
-.panel-detail-deskripsi {
+.detail-panel-description {
   font-size: 12px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
   line-height: 1.7;
   margin-bottom: 20px;
 }
 
-.panel-detail-footer {
+.detail-panel-section-label {
+  font-family: var(--font-mono);
+  font-size: 10.4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  margin-bottom: 10px;
+}
+
+.detail-panel-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   padding-top: 16px;
-  border-top: 1px solid var(--warna-garis);
+  border-top: 1px solid var(--color-border);
 }
 
-.panel-detail-footer .tombol-belajar {
+.detail-panel-footer .button-start-learning {
   padding: 13px 32px;
   font-size: 11.2px;
 }
 
 .footer {
-  border-top: 1px solid var(--warna-garis);
+  border-top: 1px solid var(--color-border);
   padding: 64px 0 32px;
   margin-top: 100px;
 }
@@ -946,68 +1050,49 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
 }
 
 .footer-logo {
+  font-family: var(--font-logo);
   font-size: 19.2px;
   font-weight: 700;
-  color: var(--warna-aksen);
+  color: var(--color-accent);
   margin-bottom: 14px;
   display: block;
 }
 
-.footer-deskripsi {
+.footer-description {
   font-size: 11.2px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
   max-width: 280px;
   margin-bottom: 20px;
 }
 
-.footer-sosial {
-  display: flex;
-  gap: 10px;
-}
-
-.footer-sosial a {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: var(--warna-gelap);
-  color: var(--warna-latar);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease;
-}
-
-.footer-sosial a:hover { background: var(--warna-aksen); }
-.footer-sosial .lucide { width: 17px; height: 17px; }
-
-.footer-kolom-judul {
+.footer-column-title {
   font-family: var(--font-mono);
   font-size: 10.4px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
   margin-bottom: 18px;
 }
 
-.footer-kolom ul { display: flex; flex-direction: column; gap: 12px; }
+.footer-column ul { display: flex; flex-direction: column; gap: 12px; }
 
-.footer-kolom a {
+.footer-column a {
   font-size: 11.2px;
-  color: var(--warna-gelap);
+  color: var(--color-dark);
   transition: color 0.2s ease;
 }
 
-.footer-kolom a:hover { color: var(--warna-aksen); }
+.footer-column a:hover { color: var(--color-accent); }
 
-.footer-bawah {
-  border-top: 1px solid var(--warna-garis);
+.footer-bottom {
+  border-top: 1px solid var(--color-border);
   padding-top: 24px;
   display: flex;
   justify-content: space-between;
   font-size: 10.4px;
-  color: var(--warna-teks-sekunder);
+  color: var(--color-text-secondary);
 }
 
 @media (min-width: 768px) {
-  .panel-detail {
+  .detail-panel {
     left: 50%;
     right: auto;
     bottom: auto;
@@ -1015,86 +1100,91 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
     transform: translate(-50%, -46%);
     width: min(680px, 90vw);
     max-height: 82vh;
-    border-radius: var(--radius-kartu);
+    border-radius: var(--radius-card);
     padding: 28px 32px 32px;
   }
 
-  .overlay-detail.tampil .panel-detail {
+  .detail-overlay.is-visible .detail-panel {
     transform: translate(-50%, -50%);
   }
 
-  .panel-detail-pegangan { display: none; }
+  .detail-panel-handle { display: none; }
 
-  .panel-detail-gambar { aspect-ratio: 16/7; }
+  .detail-panel-image { aspect-ratio: 16/7; }
 
-  .panel-detail-judul { font-size: 22.4px; }
+  .detail-panel-title { font-size: 22.4px; }
 }
 
 @media (max-width: 960px) {
-  .hero-grid, .deskripsi-grid { grid-template-columns: 1fr; }
-  .hero-ilustrasi { order: -1; max-width: 460px; margin: 0 auto; }
-  .deskripsi-ilustrasi { max-width: 420px; margin: 0 auto; }
+  .hero-grid, .about-grid { grid-template-columns: 1fr; }
+  .hero-illustration { order: -1; max-width: 460px; margin: 0 auto; }
+  .about-illustration { max-width: 420px; margin: 0 auto; }
+  .tech-float-card { width: 52px; height: 52px; }
+  .tech-float-card i { font-size: 24px; }
   .course-layout { grid-template-columns: 1fr; }
-  .panel-filter { position: static; order: 1; }
-  .kolom-course { order: 2; }
-  .grid-kartu-course { grid-template-columns: repeat(2, 1fr); }
+  .filter-panel { position: static; order: 1; }
+  .course-column { order: 2; }
+  .course-card-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 
 @media (max-width: 628px) {
-  .kontainer { padding: 0 24px; }
-  .menu-navigasi { display: none; }
-  .tombol-menu-mobile { display: flex; flex-shrink: 0; }
-  #tombol-mulai-desktop { display: none; }
+  .container { padding: 0 24px; }
+  .nav-menu { display: none; }
+  .mobile-menu-button { display: flex; flex-shrink: 0; }
+  #start-now-desktop-button { display: none; }
   .hero { padding: 48px 0 64px; overflow-y: auto; }
-  .hero-judul { font-size: 25.6px; }
-  .hero-deskripsi { font-size: 12px; max-width: 100%; }
+  .hero-title { font-size: 25.6px; }
+  .hero-description { font-size: 12px; max-width: 100%; }
   .hero-cta { flex-wrap: wrap; }
-  .section-deskripsi { padding: 56px 0; overflow-y: auto; }
-  .deskripsi-teks { font-size: 15.2px; }
-  .deskripsi-sumber { font-size: 19.2px; }
+  .section-about { padding: 56px 0; overflow-y: auto; }
+  .about-text { font-size: 15.2px; }
+  .about-source { font-size: 19.2px; }
   .section-course { padding: 56px 0 72px; }
-  .course-judul { font-size: 22.4px; }
-  .grid-kartu-course { grid-template-columns: 1fr; gap: 18px; }
-  .kartu-aksi { gap: 8px; }
+  .course-title { font-size: 22.4px; }
+  .course-card-grid { grid-template-columns: 1fr; gap: 18px; }
+  .card-actions { gap: 8px; }
   .footer { padding: 48px 0 24px; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; margin-bottom: 32px; }
-  .footer-bawah { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .footer-bottom { flex-direction: column; gap: 10px; align-items: flex-start; }
 }
 
 @media (max-width: 448px) {
-  .kontainer { padding: 0 18px; }
+  .container { padding: 0 18px; }
   .logo { font-size: 16.8px; }
   .hero { padding: 36px 0 48px; }
   .hero-label { font-size: 9.6px; }
-  .hero-judul { font-size: 21.6px; }
-  .hero-ilustrasi { padding: 16px 20px 20px 0; }
-  .aksen-hero-satu { width: 80px; height: 80px; }
-  .aksen-hero-dua { width: 60px; height: 60px; }
-  .tombol-utama, .tombol-garis { font-size: 10.4px; padding: 12px 20px; }
-  .deskripsi-ilustrasi { padding: 22px; }
-  .grafis-pojok { width: 48px; height: 48px; }
-  .deskripsi-teks { font-size: 13.6px; }
-  .course-judul { font-size: 19.2px; }
-  .course-subjudul { font-size: 10.4px; }
-  .panel-filter { padding: 18px; }
-  .modal-menu-daftar a { font-size: 15.2px; padding: 15px 4px; }
-  .modal-menu-footer { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .modal-menu-sosial { align-items: flex-start; }
+  .hero-title { font-size: 21.6px; }
+  .hero-illustration { padding: 16px 20px 20px 0; }
+  .hero-accent-one { width: 80px; height: 80px; }
+  .hero-accent-two { width: 60px; height: 60px; }
+  .button-primary, .button-outline { font-size: 10.4px; padding: 12px 20px; }
+  .about-illustration { padding: 22px; }
+  .corner-graphic { width: 48px; height: 48px; }
+  .tech-float-card { width: 44px; height: 44px; }
+  .tech-float-card i { font-size: 20px; }
+  .tech-marquee-track { gap: 36px; }
+  .tech-marquee-item { font-size: 10.4px; }
+  .tech-marquee-item i { font-size: 18px; }
+  .about-text { font-size: 13.6px; }
+  .course-title { font-size: 19.2px; }
+  .course-subtitle { font-size: 10.4px; }
+  .filter-panel { padding: 18px; }
+  .mobile-menu-list a { font-size: 15.2px; padding: 15px 4px; }
+  .mobile-menu-footer { flex-direction: column; align-items: flex-start; gap: 14px; }
 }
 
 @media (max-width: 360px) {
-  .kontainer { padding: 0 14px; }
-  .hero-judul { font-size: 18.4px; }
-  .hero-deskripsi { font-size: 11.2px; }
+  .container { padding: 0 14px; }
+  .hero-title { font-size: 18.4px; }
+  .hero-description { font-size: 11.2px; }
   .hero-cta { flex-direction: column; align-items: stretch; }
-  .hero-cta .tombol-utama, .hero-cta .tombol-garis { justify-content: center; }
-  .deskripsi-teks { font-size: 12px; }
-  .deskripsi-sumber { font-size: 16.8px; }
-  .kartu-aksi { grid-template-columns: 1fr; }
-  .footer-sosial { flex-wrap: wrap; }
-  .modal-menu-panel { top: 10px; right: 10px; left: 10px; padding: 18px; }
-  .modal-menu-daftar a { font-size: 13.6px; }
+  .hero-cta .button-primary, .hero-cta .button-outline { justify-content: center; }
+  .about-text { font-size: 12px; }
+  .about-source { font-size: 16.8px; }
+  .card-actions { grid-template-columns: 1fr; }
+  .mobile-menu-panel { top: 10px; right: 10px; left: 10px; padding: 18px; }
+  .mobile-menu-list a { font-size: 13.6px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1104,65 +1194,60 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
 </head>
 <body>
 
-<header class="navbar" id="navbar-utama">
-  <div class="kontainer navbar-inner">
-    <a href="#beranda" class="logo">CC.</a>
-    <nav class="menu-navigasi">
-      <a href="#beranda" class="aktif">Home</a>
+<header class="navbar" id="main-navbar">
+  <div class="container navbar-inner">
+    <a href="#beranda" class="logo">CodingCamp</a>
+    <nav class="nav-menu">
+      <a href="#beranda" class="active">Home</a>
       <a href="#tentang">About Us</a>
       <a href="#course">Course</a>
     </nav>
-    <div class="navbar-aksi-kanan">
-      <button class="tombol-toggle-tema" id="tombol-toggle-tema" aria-label="Ganti tema">
-        <i data-lucide="sun" class="ikon-tema-terang"></i>
-        <i data-lucide="moon" class="ikon-tema-gelap"></i>
+    <div class="navbar-actions-right">
+      <button class="theme-toggle-button" id="theme-toggle-button" aria-label="Ganti tema">
+        <i data-lucide="sun" class="icon-theme-light"></i>
+        <i data-lucide="moon" class="icon-theme-dark"></i>
       </button>
-      <a href="#course" class="tombol-utama" id="tombol-mulai-desktop">Start Now <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
-      <button class="tombol-menu-mobile" id="tombol-menu-mobile" aria-label="Buka menu" aria-expanded="false">
-        <i data-lucide="align-right" class="ikon-buka"></i>
-        <i data-lucide="x" class="ikon-tutup"></i>
+      <a href="#course" class="button-primary" id="start-now-desktop-button">Start Now <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+      <button class="mobile-menu-button" id="mobile-menu-button" aria-label="Buka menu" aria-expanded="false">
+        <i data-lucide="align-right" class="icon-open"></i>
+        <i data-lucide="x" class="icon-close"></i>
       </button>
     </div>
   </div>
 </header>
 
-<div class="modal-menu-mobile" id="modal-menu-mobile">
-  <div class="modal-menu-panel">
-    <div class="modal-menu-header">
-      <span class="modal-menu-label">MENU</span>
-      <button class="modal-menu-tutup" id="modal-menu-tutup">Close <i data-lucide="x"></i></button>
+<div class="mobile-menu-modal" id="mobile-menu-modal">
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-header">
+      <span class="mobile-menu-label">MENU</span>
+      <button class="mobile-menu-close" id="mobile-menu-close">Close <i data-lucide="x"></i></button>
     </div>
-    <nav class="modal-menu-daftar">
-      <a href="#beranda" class="tautan-menu-mobile">Home</a>
-      <a href="#tentang" class="tautan-menu-mobile">About Us</a>
-      <a href="#course" class="tautan-menu-mobile">Course</a>
+    <nav class="mobile-menu-list">
+      <a href="#beranda" class="mobile-menu-link">Home</a>
+      <a href="#tentang" class="mobile-menu-link">About Us</a>
+      <a href="#course" class="mobile-menu-link">Course</a>
     </nav>
-    <div class="modal-menu-footer">
-      <a href="mailto:halo@codingcamp.id" class="modal-menu-email">halo@codingcamp.id</a>
-      <div class="modal-menu-sosial">
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-        <a href="#">LinkedIn</a>
-      </div>
+    <div class="mobile-menu-footer">
+      <a href="mailto:ilanalimanjs@gmail.com" class="mobile-menu-email">ilanalimanjs@gmail.com</a>
     </div>
   </div>
 </div>
 
 <main>
   <section class="hero" id="beranda">
-    <div class="kontainer hero-grid">
+    <div class="container hero-grid">
       <div>
-        <p class="hero-label"><i data-lucide="sparkles" style="width:14px;height:14px;"></i> Coding Camp 2026</p>
-        <h1 class="hero-judul">Belajar coding dari nol, jadi siap kerja.</h1>
-        <p class="hero-deskripsi">CC. menyusun jalur belajar terstruktur dari dasar sampai mahir, dibimbing mentor industri, tanpa basa basi teori yang tidak terpakai.</p>
-        <div class="hero-cta">
-          <a href="#course" class="tombol-utama">Start Now <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
-          <a href="#tentang" class="tombol-garis">Lihat Kurikulum</a>
+        <p class="hero-label" data-aos="fade-up" data-aos-duration="600" data-aos-mirror="false" data-aos-once="true"><i data-lucide="sparkles" style="width:14px;height:14px;"></i> Coding Camp 2026</p>
+        <h1 class="hero-title" data-aos="fade-up" data-aos-duration="700" data-aos-delay="100" data-aos-mirror="false" data-aos-once="true">Membangun kemampuan coding</h1>
+        <p class="hero-description" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200" data-aos-mirror="false" data-aos-once="true">Coding Camp melatih peserta berpikir logis, memecahkan masalah, dan bekerja terstruktur lewat praktik dan project nyata, bukan sekadar teori.</p>
+        <div class="hero-cta" data-aos="fade-up" data-aos-duration="700" data-aos-delay="300" data-aos-mirror="false" data-aos-once="true">
+          <a href="#course" class="button-primary">Start Now <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+          <a href="#tentang" class="button-outline">Lihat Kurikulum</a>
         </div>
       </div>
-      <div class="hero-ilustrasi">
-        <div class="bingkai-ilustrasi-hero">
-          <img src="assets/illustration-hero.svg" alt="Ilustrasi belajar coding" width="500" height="460" loading="eager">
+      <div class="hero-illustration" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="150" data-aos-mirror="false" data-aos-once="true">
+        <div class="hero-illustration-frame">
+          <img src="assets/illustration-hero.svg" alt="Coding learning illustration" width="500" height="460" loading="eager">
         </div>
       </div>
     </div>
@@ -1170,227 +1255,268 @@ html[data-tema="gelap"] .ikon-tema-gelap { display: block; }
 
   <div class="hero-spacer" aria-hidden="true"></div>
 
-  <section class="section-deskripsi" id="tentang">
-    <div class="kontainer deskripsi-grid">
-      <div class="deskripsi-ilustrasi">
-        <div class="bingkai-ilustrasi-about">
-          <img src="assets/illustration-about.svg" alt="Ilustrasi tim kurikulum CC." width="400" height="380" loading="lazy">
+  <section class="section-about" id="tentang">
+    <div class="container about-grid">
+      <div class="about-illustration" data-aos="fade-right" data-aos-duration="1200">
+        <div class="about-illustration-frame">
+          <img src="assets/illustration-about.svg" alt="CodingCamp curriculum team illustration" width="400" height="380" loading="lazy">
+        </div>
+        <div class="tech-float-card tech-float-card-one">
+          <i class="devicon-nodejs-plain colored"></i>
+        </div>
+        <div class="tech-float-card tech-float-card-two">
+          <i class="devicon-mysql-plain colored"></i>
+        </div>
+        <div class="tech-float-card tech-float-card-three">
+          <i class="devicon-laravel-plain colored"></i>
+        </div>
+        <div class="tech-float-card tech-float-card-four">
+          <i class="devicon-javascript-plain colored"></i>
+        </div>
+        <div class="tech-float-card tech-float-card-five">
+          <i class="devicon-react-original colored"></i>
+        </div>
+        <div class="tech-float-card tech-float-card-six">
+          <i class="devicon-git-plain colored"></i>
         </div>
       </div>
       <div>
-        <p class="deskripsi-teks">Kami percaya belajar coding paling efektif lewat praktik langsung, bukan hafalan teori. Setiap materi di CC. dirancang berdasarkan kebutuhan nyata dunia kerja, disusun bertahap agar siapa pun bisa mengikuti sesuai levelnya masing masing.</p>
-        <p class="deskripsi-sumber">Tim Kurikulum CC.</p>
+        <p class="about-text" data-aos="fade-up" data-aos-duration="700">Coding Camp merupakan kegiatan pembelajaran dan pelatihan untuk membangun kemampuan peserta di bidang pemrograman. Selain konsep dasar, peserta dilatih berpikir logis, memecahkan masalah, bekerja terstruktur, serta menerapkan pengetahuan lewat praktik dan project nyata sebagai ruang belajar bersama yang aktif dan kolaboratif.</p>
+        <p class="about-source" data-aos="fade-up" data-aos-duration="700" data-aos-delay="150">Coding Camp</p>
       </div>
     </div>
   </section>
 
+  <div class="tech-marquee" aria-hidden="true">
+    <div class="tech-marquee-track">
+      <span class="tech-marquee-item"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
+      <span class="tech-marquee-item"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+      <span class="tech-marquee-item"><i class="devicon-laravel-plain colored"></i> Laravel</span>
+      <span class="tech-marquee-item"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+      <span class="tech-marquee-item"><i class="devicon-react-original colored"></i> React</span>
+      <span class="tech-marquee-item"><i class="devicon-git-plain colored"></i> Git</span>
+      <span class="tech-marquee-item"><i class="devicon-html5-plain colored"></i> HTML5</span>
+      <span class="tech-marquee-item"><i class="devicon-css3-plain colored"></i> CSS3</span>
+      <span class="tech-marquee-item"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
+      <span class="tech-marquee-item"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+      <span class="tech-marquee-item"><i class="devicon-laravel-plain colored"></i> Laravel</span>
+      <span class="tech-marquee-item"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+      <span class="tech-marquee-item"><i class="devicon-react-original colored"></i> React</span>
+      <span class="tech-marquee-item"><i class="devicon-git-plain colored"></i> Git</span>
+      <span class="tech-marquee-item"><i class="devicon-html5-plain colored"></i> HTML5</span>
+      <span class="tech-marquee-item"><i class="devicon-css3-plain colored"></i> CSS3</span>
+    </div>
+  </div>
+
   <section class="section-course" id="course">
-    <div class="kontainer">
-      <div class="course-judul-wrap">
-        <h2 class="course-judul">Pilih Course Kamu</h2>
-        <p class="course-subjudul">Cari berdasarkan topik atau saring sesuai tingkat kemampuanmu</p>
+    <div class="container">
+      <div class="course-title-wrap">
+        <h2 class="course-title" data-aos="fade-up" data-aos-duration="700">Pilih Course Kamu</h2>
+        <p class="course-subtitle" data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">Cari berdasarkan topik atau saring sesuai tingkat kemampuanmu</p>
       </div>
 
       <div class="course-layout">
-        <div class="panel-filter">
-          <div class="kotak-cari">
+        <div class="filter-panel" data-aos="fade-right" data-aos-duration="700">
+          <div class="search-box">
             <i data-lucide="search"></i>
-            <input type="text" id="input-cari" placeholder="Cari nama course...">
+            <input type="text" id="search-input" placeholder="Cari nama course...">
           </div>
 
           <p class="filter-label">Tingkat Pembelajaran</p>
-          <div id="daftar-filter">
-            <div class="opsi-radio">
-              <input type="radio" name="tingkat" id="filter-semua" value="semua" checked>
-              <label for="filter-semua">Semua Tingkat</label>
+          <div id="filter-list">
+            <div class="radio-option">
+              <input type="radio" name="level" id="filter-all" value="all" checked>
+              <label for="filter-all">Semua Tingkat</label>
             </div>
-            <div class="opsi-radio">
-              <input type="radio" name="tingkat" id="filter-dasar" value="dasar">
-              <label for="filter-dasar">Dasar</label>
+            <div class="radio-option">
+              <input type="radio" name="level" id="filter-beginner" value="beginner">
+              <label for="filter-beginner">Dasar</label>
             </div>
-            <div class="opsi-radio">
-              <input type="radio" name="tingkat" id="filter-menengah" value="menengah">
-              <label for="filter-menengah">Menengah</label>
+            <div class="radio-option">
+              <input type="radio" name="level" id="filter-intermediate" value="intermediate">
+              <label for="filter-intermediate">Menengah</label>
             </div>
-            <div class="opsi-radio">
-              <input type="radio" name="tingkat" id="filter-sulit" value="sulit">
-              <label for="filter-sulit">Sulit</label>
+            <div class="radio-option">
+              <input type="radio" name="level" id="filter-advanced" value="advanced">
+              <label for="filter-advanced">Sulit</label>
             </div>
           </div>
 
-          <button class="tombol-reset-filter" id="tombol-reset">Reset Filter</button>
+          <button class="reset-filter-button" id="reset-filter-button">Reset Filter</button>
         </div>
 
-        <div class="kolom-course">
-          <div class="grid-kartu-course" id="grid-course"></div>
+        <div class="course-column">
+          <div class="course-card-grid" id="course-grid"></div>
         </div>
       </div>
     </div>
     
     <footer class="footer">
-      <div class="kontainer">
+      <div class="container">
         <div class="footer-grid">
-          <div>
-            <a href="#beranda" class="footer-logo">CC.</a>
-            <p class="footer-deskripsi">Coding Camp membantu kamu belajar pemrograman secara terstruktur, dari dasar sampai siap kerja.</p>
-            <div class="footer-sosial">
-              <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
-              <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
-              <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
-            </div>
+          <div data-aos="fade-up" data-aos-duration="700">
+            <a href="#beranda" class="footer-logo">CodingCamp</a>
+            <p class="footer-description">Coding Camp adalah komunitas training yang membangun kemampuan pemrograman peserta secara terstruktur, dari konsep dasar sampai siap terjun ke industri.</p>
           </div>
-          <div class="footer-kolom">
-            <p class="footer-kolom-judul">Navigasi</p>
+          <div class="footer-column" data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">
+            <p class="footer-column-title">Navigasi</p>
             <ul>
               <li><a href="#beranda">Home</a></li>
               <li><a href="#tentang">About Us</a></li>
               <li><a href="#course">Course</a></li>
             </ul>
           </div>
-          <div class="footer-kolom">
-            <p class="footer-kolom-judul">Kontak</p>
+          <div class="footer-column" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">
+            <p class="footer-column-title">Kontak</p>
             <ul>
-              <li><a href="mailto:halo@codingcamp.id">halo@codingcamp.id</a></li>
-              <li><a href="#">+62 812 3456 7890</a></li>
-              <li><a href="#">Jakarta, Indonesia</a></li>
+              <li><a href="mailto:ilanalimanjs@gmail.com">ilanalimanjs@gmail.com</a></li>
+              <li><a href="tel:+6289538669267">+62 895 3866 9267</a></li>
+              <li><a href="#">Serang, Banten</a></li>
             </ul>
           </div>
         </div>
-        <div class="footer-bawah">
+        <div class="footer-bottom" data-aos="fade-up" data-aos-duration="600">
           <p>© 2026 CC. Coding Camp. Seluruh hak cipta dilindungi.</p>
-          <p>Dibuat untuk calon developer Indonesia</p>
+          <p>Serang, Banten</p>
         </div>
       </div>
     </footer>
   </section>
 </main>
 
-<div class="overlay-detail" id="overlay-detail">
-  <div class="panel-detail" id="panel-detail" role="dialog" aria-modal="true"></div>
+<div class="detail-overlay" id="detail-overlay">
+  <div class="detail-panel" id="detail-panel" role="dialog" aria-modal="true"></div>
 </div>
 
 <script>
 lucide.createIcons();
+AOS.init({
+  duration: 700,
+  easing: 'ease-out-cubic',
+  once: false,
+  mirror: true,
+  offset: 60
+});
 
-const elemenHtml = document.documentElement;
-const tombolToggleTema = document.getElementById('tombol-toggle-tema');
-const temaTersimpan = localStorage.getItem('cc-tema');
+const htmlElement = document.documentElement;
+const themeToggleButton = document.getElementById('theme-toggle-button');
+const storedTheme = localStorage.getItem('cc-theme');
 
-if (temaTersimpan === 'gelap') {
-  elemenHtml.setAttribute('data-tema', 'gelap');
+if (storedTheme === 'dark') {
+  htmlElement.setAttribute('data-theme', 'dark');
 }
 
-tombolToggleTema.addEventListener('click', function () {
-  const temaSekarang = elemenHtml.getAttribute('data-tema');
-  if (temaSekarang === 'gelap') {
-    elemenHtml.removeAttribute('data-tema');
-    localStorage.setItem('cc-tema', 'terang');
+themeToggleButton.addEventListener('click', function () {
+  const currentTheme = htmlElement.getAttribute('data-theme');
+  if (currentTheme === 'dark') {
+    htmlElement.removeAttribute('data-theme');
+    localStorage.setItem('cc-theme', 'light');
   } else {
-    elemenHtml.setAttribute('data-tema', 'gelap');
-    localStorage.setItem('cc-tema', 'gelap');
+    htmlElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('cc-theme', 'dark');
   }
 });
 
-const navbarUtama = document.getElementById('navbar-utama');
+const mainNavbar = document.getElementById('main-navbar');
 
 window.addEventListener('scroll', function () {
   if (window.scrollY > 8) {
-    navbarUtama.classList.add('navbar-scroll');
+    mainNavbar.classList.add('navbar-scroll');
   } else {
-    navbarUtama.classList.remove('navbar-scroll');
+    mainNavbar.classList.remove('navbar-scroll');
   }
 });
 
-const tombolMenuMobile = document.getElementById('tombol-menu-mobile');
-const modalMenuMobile = document.getElementById('modal-menu-mobile');
-const modalMenuTutup = document.getElementById('modal-menu-tutup');
-const tautanMenuMobile = document.querySelectorAll('.tautan-menu-mobile');
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenuModal = document.getElementById('mobile-menu-modal');
+const mobileMenuClose = document.getElementById('mobile-menu-close');
+const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
 
-function bukaMenuMobile() {
-  modalMenuMobile.classList.add('tampil');
-  tombolMenuMobile.classList.add('aktif');
-  tombolMenuMobile.setAttribute('aria-expanded', 'true');
+function openMobileMenu() {
+  mobileMenuModal.classList.add('is-visible');
+  mobileMenuButton.classList.add('active');
+  mobileMenuButton.setAttribute('aria-expanded', 'true');
   document.body.style.overflow = 'hidden';
 }
 
-function tutupMenuMobile() {
-  modalMenuMobile.classList.remove('tampil');
-  tombolMenuMobile.classList.remove('aktif');
-  tombolMenuMobile.setAttribute('aria-expanded', 'false');
+function closeMobileMenu() {
+  mobileMenuModal.classList.remove('is-visible');
+  mobileMenuButton.classList.remove('active');
+  mobileMenuButton.setAttribute('aria-expanded', 'false');
   document.body.style.overflow = '';
 }
 
-tombolMenuMobile.addEventListener('click', function () {
-  if (modalMenuMobile.classList.contains('tampil')) {
-    tutupMenuMobile();
+mobileMenuButton.addEventListener('click', function () {
+  if (mobileMenuModal.classList.contains('is-visible')) {
+    closeMobileMenu();
   } else {
-    bukaMenuMobile();
+    openMobileMenu();
   }
 });
 
-modalMenuTutup.addEventListener('click', tutupMenuMobile);
+mobileMenuClose.addEventListener('click', closeMobileMenu);
 
-modalMenuMobile.addEventListener('click', function (peristiwa) {
-  if (peristiwa.target === modalMenuMobile) {
-    tutupMenuMobile();
+mobileMenuModal.addEventListener('click', function (event) {
+  if (event.target === mobileMenuModal) {
+    closeMobileMenu();
   }
 });
 
-tautanMenuMobile.forEach(function (tautan) {
-  tautan.addEventListener('click', tutupMenuMobile);
+mobileMenuLinks.forEach(function (link) {
+  link.addEventListener('click', closeMobileMenu);
 });
 
-let semuaCourse = [];
-let kataKunciCari = '';
-let tingkatDipilih = 'semua';
+let allCourses = [];
+let searchKeyword = '';
+let selectedLevel = 'all';
 
-const gridCourse = document.getElementById('grid-course');
-const inputCari = document.getElementById('input-cari');
-const tombolReset = document.getElementById('tombol-reset');
+const courseGrid = document.getElementById('course-grid');
+const searchInput = document.getElementById('search-input');
+const resetFilterButton = document.getElementById('reset-filter-button');
 
-async function muatCourse() {
+async function loadCourses() {
   try {
-    const respon = await fetch('course.json');
-    semuaCourse = await respon.json();
-    renderCourse();
-  } catch (kesalahan) {
-    gridCourse.innerHTML = '<div class="status-kosong"><p>Gagal memuat data course</p><p>Pastikan file course.json berada di folder yang sama</p></div>';
+    const response = await fetch('course.json');
+    allCourses = await response.json();
+    renderCourses();
+  } catch (error) {
+    courseGrid.innerHTML = '<div class="empty-state"><p>Gagal memuat data course</p><p>Pastikan file course.json berada di folder yang sama</p></div>';
   }
 }
 
-function renderCourse() {
-  const hasil = semuaCourse.filter(function (item) {
-    const cocokTingkat = tingkatDipilih === 'semua' || item.tingkat === tingkatDipilih;
-    const cocokCari = item.judul.toLowerCase().includes(kataKunciCari.toLowerCase());
-    return cocokTingkat && cocokCari;
+function renderCourses() {
+  const result = allCourses.filter(function (item) {
+    const matchLevel = selectedLevel === 'all' || item.level === selectedLevel;
+    const matchSearch = item.title.toLowerCase().includes(searchKeyword.toLowerCase());
+    return matchLevel && matchSearch;
   });
 
-  if (hasil.length === 0) {
-    gridCourse.innerHTML = '<div class="status-kosong"><i data-lucide="search-x"></i><p>Course tidak ditemukan</p><p>Coba ubah kata kunci atau filter tingkat</p></div>';
+  if (result.length === 0) {
+    courseGrid.innerHTML = '<div class="empty-state"><i data-lucide="search-x"></i><p>Course tidak ditemukan</p><p>Coba ubah kata kunci atau filter tingkat</p></div>';
     lucide.createIcons();
     return;
   }
 
-  gridCourse.innerHTML = hasil.map(function (item) {
+  courseGrid.innerHTML = result.map(function (item, index) {
     return `
-      <article class="kartu-course">
-        <div class="kartu-preview">
-          <img src="${item.gambar}" alt="${item.judul}" loading="lazy">
+      <article class="course-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="${(index % 3) * 100}">
+        <div class="card-preview">
+          <img src="${item.image}" alt="${item.title}" loading="lazy">
         </div>
-        <div class="kartu-isi">
-          <div class="kartu-header-meta">
-            <p class="kartu-kategori">${item.kategori}</p>
-            <div class="kartu-durasi"><i data-lucide="clock"></i><span>${item.durasi}</span></div>
+        <div class="card-body">
+          <div class="card-header-meta">
+            <p class="card-category">${item.category}</p>
+            <div class="card-duration"><i data-lucide="clock"></i><span>${item.duration}</span></div>
           </div>
-          <h3 class="kartu-judul">${item.judul}</h3>
-          <p class="kartu-deskripsi">${potongTeks(item.deskripsi)}</p>
-          <div class="kartu-tingkat-baris">
-            <span class="lencana-tingkat-inline ${item.tingkat}">${kapitalkan(item.tingkat)}</span>
-            <span class="kartu-tanggal">${formatTanggal(item.upload_at)}</span>
+          <h3 class="card-title">${item.title}</h3>
+          <p class="card-description">${truncateText(item.description)}</p>
+          <div class="card-level-row">
+            <span class="level-badge-inline ${item.level}">${capitalize(item.level)}</span>
+            <span class="card-date">${formatDate(item.uploadedAt)}</span>
           </div>
-          <div class="kartu-aksi">
-            <button type="button" class="tombol-detail" data-id="${item.id}">Detail</button>
-            <a href="${item.url}" class="tombol-belajar">Mulai</a>
+          <div class="card-actions">
+            <button type="button" class="button-detail" data-id="${item.id}">Detail</button>
+            <a href="${item.url}" class="button-start-learning">Mulai</a>
           </div>
         </div>
       </article>
@@ -1398,84 +1524,87 @@ function renderCourse() {
   }).join('');
 
   lucide.createIcons();
+  AOS.refreshHard();
 
-  document.querySelectorAll('.tombol-detail').forEach(function (tombol) {
-    tombol.addEventListener('click', function () {
-      const id = Number(tombol.getAttribute('data-id'));
-      const item = semuaCourse.find(function (c) { return c.id === id; });
-      if (item) bukaDetailCourse(item);
+  document.querySelectorAll('.button-detail').forEach(function (button) {
+    button.addEventListener('click', function () {
+      const id = Number(button.getAttribute('data-id'));
+      const item = allCourses.find(function (c) { return c.id === id; });
+      if (item) openCourseDetail(item);
     });
   });
 }
 
-function potongTeks(teks) {
-  if (teks.length <= 100) return teks;
-  return teks.slice(0, 100).trim() + '...';
+function truncateText(text) {
+  if (text.length <= 100) return text;
+  return text.slice(0, 100).trim() + '...';
 }
 
-function kapitalkan(teks) {
-  return teks.charAt(0).toUpperCase() + teks.slice(1);
+function capitalize(text) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
-function formatTanggal(tanggalIso) {
-  const namaBulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-  const tanggal = new Date(tanggalIso);
-  return tanggal.getDate() + ' ' + namaBulan[tanggal.getMonth()] + ' ' + tanggal.getFullYear();
+function formatDate(isoDate) {
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+  const date = new Date(isoDate);
+  return date.getDate() + ' ' + monthNames[date.getMonth()] + ' ' + date.getFullYear();
 }
 
-const overlayDetail = document.getElementById('overlay-detail');
-const panelDetail = document.getElementById('panel-detail');
+const detailOverlay = document.getElementById('detail-overlay');
+const detailPanel = document.getElementById('detail-panel');
 
-function bukaDetailCourse(item) {
-  panelDetail.innerHTML = `
-    <div class="panel-detail-pegangan"></div>
-    <button type="button" class="panel-detail-tutup" id="panel-detail-tutup" aria-label="Tutup detail"><i data-lucide="x"></i></button>
-    <div class="panel-detail-gambar"><img src="${item.gambar}" alt="${item.judul}"></div>
-    <div class="panel-detail-baris-meta">
-      <span class="panel-detail-kategori">${item.kategori}</span>
-      <span class="panel-detail-durasi"><i data-lucide="clock"></i>${item.durasi}</span>
+function openCourseDetail(item) {
+  detailPanel.innerHTML = `
+    <div class="detail-panel-handle"></div>
+    <button type="button" class="detail-panel-close" id="detail-panel-close" aria-label="Tutup detail"><i data-lucide="x"></i></button>
+    <div class="detail-panel-image"><img src="${item.image}" alt="${item.title}"></div>
+    <div class="detail-panel-meta-row">
+      <span class="detail-panel-category">${item.category}</span>
+      <span class="detail-panel-duration"><i data-lucide="clock"></i>${item.duration}</span>
     </div>
-    <h2 class="panel-detail-judul">${item.judul}</h2>
-    <p class="panel-detail-deskripsi">${item.deskripsi}</p>
-    <div class="panel-detail-footer">
-      <span class="lencana-tingkat-inline ${item.tingkat}">${kapitalkan(item.tingkat)}</span>
-      <a href="${item.url}" class="tombol-belajar">Mulai Belajar</a>
+    <h2 class="detail-panel-title">${item.title}</h2>
+    <p class="detail-panel-description">${item.description}</p>
+    <p class="detail-panel-section-label">Tujuan Pembelajaran</p>
+    <p class="detail-panel-description">${item.learningObjectives}</p>
+    <div class="detail-panel-footer">
+      <span class="level-badge-inline ${item.level}">${capitalize(item.level)}</span>
+      <a href="${item.url}" class="button-start-learning">Mulai Belajar</a>
     </div>
   `;
   lucide.createIcons();
-  overlayDetail.classList.add('tampil');
+  detailOverlay.classList.add('is-visible');
   document.body.style.overflow = 'hidden';
-  document.getElementById('panel-detail-tutup').addEventListener('click', tutupDetailCourse);
+  document.getElementById('detail-panel-close').addEventListener('click', closeCourseDetail);
 }
 
-function tutupDetailCourse() {
-  overlayDetail.classList.remove('tampil');
+function closeCourseDetail() {
+  detailOverlay.classList.remove('is-visible');
   document.body.style.overflow = '';
 }
 
-overlayDetail.addEventListener('click', function (peristiwa) {
-  if (peristiwa.target === overlayDetail) tutupDetailCourse();
+detailOverlay.addEventListener('click', function (event) {
+  if (event.target === detailOverlay) closeCourseDetail();
 });
 
-inputCari.addEventListener('input', function (peristiwa) {
-  kataKunciCari = peristiwa.target.value;
-  renderCourse();
+searchInput.addEventListener('input', function (event) {
+  searchKeyword = event.target.value;
+  renderCourses();
 });
 
-document.getElementById('daftar-filter').addEventListener('change', function (peristiwa) {
-  tingkatDipilih = peristiwa.target.value;
-  renderCourse();
+document.getElementById('filter-list').addEventListener('change', function (event) {
+  selectedLevel = event.target.value;
+  renderCourses();
 });
 
-tombolReset.addEventListener('click', function () {
-  kataKunciCari = '';
-  tingkatDipilih = 'semua';
-  inputCari.value = '';
-  document.getElementById('filter-semua').checked = true;
-  renderCourse();
+resetFilterButton.addEventListener('click', function () {
+  searchKeyword = '';
+  selectedLevel = 'all';
+  searchInput.value = '';
+  document.getElementById('filter-all').checked = true;
+  renderCourses();
 });
 
-muatCourse();
+loadCourses();
 </script>
 
 </body>

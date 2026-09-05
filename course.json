@@ -1,101 +1,14 @@
 [
   {
     "id": 1,
-    "judul": "Dasar Pemrograman JavaScript",
-    "deskripsi": "Pelajari fondasi JavaScript mulai dari variabel, fungsi, hingga struktur kontrol untuk membangun logika berpikir yang kuat. Materi disusun bertahap dimulai dari sintaks dasar, tipe data, operator, percabangan, dan perulangan, dilanjutkan ke konsep fungsi, scope, serta manipulasi array dan objek. Setiap topik dilengkapi latihan praktik supaya kamu benar benar memahami cara kerja logika program, bukan sekadar menghafal sintaks yang mudah dilupakan.",
-    "gambar": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=600&q=80",
-    "tingkat": "dasar",
-    "kategori": "Frontend",
-    "durasi": "6 minggu",
-    "upload_at": "2026-01-12",
+    "title": "Dasar Pemrograman JavaScript",
+    "description": "Pelajari fondasi JavaScript mulai dari variabel, fungsi, hingga struktur kontrol untuk membangun logika berpikir yang kuat. Materi disusun bertahap dimulai dari sintaks dasar, tipe data, operator, percabangan, dan perulangan, dilanjutkan ke konsep fungsi, scope, serta manipulasi array dan objek. Setiap topik dilengkapi latihan praktik supaya kamu benar benar memahami cara kerja logika program, bukan sekadar menghafal sintaks yang mudah dilupakan.",
+    "learningObjectives": "Setelah menyelesaikan course ini, kamu akan mampu menulis program JavaScript dari nol tanpa bergantung pada contekan sintaks, memahami alur eksekusi kode secara logis, serta terbiasa memecah masalah menjadi langkah langkah kecil sebelum menuliskannya jadi kode. Kemampuan ini menjadi fondasi wajib sebelum lanjut ke framework atau library apapun, baik untuk pengembangan web, mobile, maupun backend.",
+    "image": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=600&q=80",
+    "level": "beginner",
+    "category": "Frontend",
+    "duration": "6 minggu",
+    "uploadedAt": "2026-01-12",
     "url": "detail.html?id=1"
-  },
-  {
-    "id": 2,
-    "judul": "Membangun UI dengan React",
-    "deskripsi": "Kuasai component based architecture, state management, dan hooks untuk membangun antarmuka yang interaktif dan scalable.",
-    "gambar": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&q=80",
-    "tingkat": "menengah",
-    "kategori": "Frontend",
-    "durasi": "8 minggu",
-    "upload_at": "2026-02-03",
-    "url": "detail.html?id=2"
-  },
-  {
-    "id": 3,
-    "judul": "Arsitektur Backend Skalabel",
-    "deskripsi": "Rancang sistem backend yang mampu menangani beban tinggi dengan pola microservices, caching, dan load balancing.",
-    "gambar": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&q=80",
-    "tingkat": "sulit",
-    "kategori": "Backend",
-    "durasi": "10 minggu",
-    "upload_at": "2026-02-18",
-    "url": "detail.html?id=3"
-  },
-  {
-    "id": 4,
-    "judul": "Pengenalan Basis Data Relasional",
-    "deskripsi": "Pahami konsep tabel, relasi, dan query dasar SQL untuk mengelola data secara terstruktur dan efisien.",
-    "gambar": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&q=80",
-    "tingkat": "dasar",
-    "kategori": "Database",
-    "durasi": "5 minggu",
-    "upload_at": "2026-03-05",
-    "url": "detail.html?id=4"
-  },
-  {
-    "id": 5,
-    "judul": "Node.js untuk API Production",
-    "deskripsi": "Bangun REST API yang aman, teruji, dan siap produksi menggunakan Node.js beserta praktik terbaik industri.",
-    "gambar": "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=600&q=80",
-    "tingkat": "menengah",
-    "kategori": "Backend",
-    "durasi": "8 minggu",
-    "upload_at": "2026-03-22",
-    "url": "detail.html?id=5"
-  },
-  {
-    "id": 6,
-    "judul": "Sistem Terdistribusi Tingkat Lanjut",
-    "deskripsi": "Selami konsensus, replikasi data, dan fault tolerance untuk merancang sistem yang tangguh dalam skala besar.",
-    "gambar": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
-    "tingkat": "sulit",
-    "kategori": "Backend",
-    "durasi": "12 minggu",
-    "upload_at": "2026-04-09",
-    "url": "detail.html?id=6"
-  },
-  {
-    "id": 7,
-    "judul": "Dasar Desain Antarmuka Digital",
-    "deskripsi": "Pelajari prinsip tata letak, tipografi, dan warna untuk merancang antarmuka yang enak dilihat dan digunakan.",
-    "gambar": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80",
-    "tingkat": "dasar",
-    "kategori": "Desain",
-    "durasi": "4 minggu",
-    "upload_at": "2026-04-27",
-    "url": "detail.html?id=7"
-  },
-  {
-    "id": 8,
-    "judul": "TypeScript untuk Tim Enterprise",
-    "deskripsi": "Terapkan penulisan tipe yang ketat untuk mengurangi bug dan mempermudah kolaborasi dalam tim pengembangan besar.",
-    "gambar": "https://images.unsplash.com/photo-1687603921109-46018abf3fd8?w=600&q=80",
-    "tingkat": "menengah",
-    "kategori": "Frontend",
-    "durasi": "7 minggu",
-    "upload_at": "2026-05-14",
-    "url": "detail.html?id=8"
-  },
-  {
-    "id": 9,
-    "judul": "Keamanan Aplikasi Web Lanjutan",
-    "deskripsi": "Kenali celah keamanan umum dan pelajari cara mengamankan aplikasi dari serangan di lingkungan produksi nyata.",
-    "gambar": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80",
-    "tingkat": "sulit",
-    "kategori": "Keamanan",
-    "durasi": "9 minggu",
-    "upload_at": "2026-06-01",
-    "url": "detail.html?id=9"
   }
 ]
